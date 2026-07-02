@@ -1,382 +1,491 @@
 @extends('layouts.app')
 
-@section('title', 'Find Your Dream Job - JobMatch Australia')
-@section('meta_description', 'Browse thousands of jobs in Australia. Find your perfect career opportunity with AI-powered job matching.')
+@section('title', 'Browse Job Opportunities - JobMatch Australia')
+@section('meta_description', 'Find your next career opportunity...')
 
 @section('content')
-<!--begin::Toolbar-->
-<div id="kt_app_toolbar" class="app-toolbar py-3 py-lg-6">
-    <div id="kt_app_toolbar_container" class="app-container container-xxl d-flex flex-stack">
-        <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
-            <h1 class="page-heading d-flex text-gray-900 fw-bold fs-3 flex-column justify-content-center my-0">Job Listings</h1>
-            <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1">
-                <li class="breadcrumb-item text-muted"><a href="{{ route('home') }}" class="text-muted text-hover-primary">Home</a></li>
-                <li class="breadcrumb-item"><span class="bullet bg-gray-500 w-5px h-2px"></span></li>
-                <li class="breadcrumb-item text-muted">Jobs</li>
-            </ul>
-        </div>
-        <div class="d-flex align-items-center gap-2 gap-lg-3">
-            <a href="{{ route('home') }}" class="btn btn-sm fw-bold btn-primary">
-                <i class="ki-duotone ki-plus fs-2 me-1"></i> Post a Job
-            </a>
-        </div>
-    </div>
-</div>
-<!--end::Toolbar-->
 
-<!--begin::Content-->
-<div id="kt_app_content" class="app-content flex-column-fluid">
-    <div id="kt_app_content_container" class="app-container container-xxl">
-        
-        <!--begin::Search and Filter Section-->
-        <div class="card mb-8">
-            <div class="card-body p-6">
-                <form action="{{ route('home') }}" method="GET" class="row g-4">
-                    <div class="col-md-4">
-                        <div class="d-flex align-items-center position-relative">
-                            <i class="ki-duotone ki-magnifier fs-2 position-absolute ms-4">
-                                <span class="path1"></span>
-                                <span class="path2"></span>
-                            </i>
-                            <input type="text" name="search" class="form-control form-control-solid ps-12" placeholder="Search jobs, keywords..." value="{{ request('search') }}">
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <select name="category" class="form-select form-select-solid" data-control="select2" data-placeholder="Category">
-                            <option value="">All Categories</option>
-                            <option value="it">IT & Software</option>
-                            <option value="finance">Finance & Banking</option>
-                            <option value="healthcare">Healthcare</option>
-                            <option value="education">Education</option>
-                            <option value="retail">Retail & Sales</option>
-                            <option value="engineering">Engineering</option>
-                        </select>
-                    </div>
-                    <div class="col-md-3">
-                        <select name="location" class="form-select form-select-solid" data-control="select2" data-placeholder="Location">
-                            <option value="">All Locations</option>
-                            <option value="sydney">Sydney</option>
-                            <option value="melbourne">Melbourne</option>
-                            <option value="brisbane">Brisbane</option>
-                            <option value="perth">Perth</option>
-                            <option value="adelaide">Adelaide</option>
-                        </select>
-                    </div>
-                    <div class="col-md-2">
-                        <button type="submit" class="btn btn-primary w-100">Search Jobs</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-        <!--end::Search and Filter Section-->
+	<!--begin::Toolbar-->
+	<div class="bg-light py-8 py-lg-12">
+		<div class="container">
+			<div class="d-flex align-items-center justify-content-between flex-wrap gap-3">
+				<div>
+					<h1 class="fs-2 fw-bold text-gray-900 mb-1">Job Opportunities</h1>
+					<p class="text-gray-600 fs-6 mb-0">Discover your perfect career match across Australia</p>
+				</div>
+				<a href="{{ route('home') }}" class="btn btn-primary">
+					<i class="ki-duotone ki-briefcase fs-2 me-2"></i> Post a Job
+				</a>
+			</div>
+		</div>
+	</div>
+	<!--end::Toolbar-->
 
-        <!--begin::Featured Jobs Section-->
-        <div class="mb-10">
-            <div class="d-flex align-items-center justify-content-between mb-5">
-                <div>
-                    <h3 class="fs-2 fw-bold text-gray-900 mb-1">🌟 Featured Jobs</h3>
-                    <span class="text-muted fs-6">Handpicked opportunities for you</span>
-                </div>
-                <a href="#" class="btn btn-sm btn-light-primary">View All</a>
-            </div>
-            
-            <div class="row g-5">
-                <!-- Featured Job 1 -->
-                <div class="col-lg-6">
-                    <div class="card job-card job-featured hover-elevate-up">
-                        <div class="card-body p-6">
-                            <div class="d-flex align-items-start justify-content-between mb-4">
-                                <div class="d-flex align-items-center">
-                                    <div class="symbol symbol-60px me-4">
-                                        <span class="symbol-label bg-light-success">
-                                            <img src="{{ asset('assets/media/svg/brand-logos/google-icon.svg') }}" class="w-40px" alt="Company">
-                                        </span>
-                                    </div>
-                                    <div>
-                                        <a href="#" class="text-gray-900 fw-bold fs-4 text-hover-primary">Senior Full Stack Developer</a>
-                                        <div class="text-muted fs-6">Google Australia • Sydney</div>
-                                    </div>
-                                </div>
-                                <span class="featured-badge">Featured</span>
-                            </div>
-                            
-                            <div class="d-flex flex-wrap gap-3 mb-4">
-                                <span class="job-tag"><i class="ki-duotone ki-briefcase fs-6 me-1"></i> Full Time</span>
-                                <span class="job-tag"><i class="ki-duotone ki-location fs-6 me-1"></i> On-site</span>
-                                <span class="job-tag"><i class="ki-duotone ki-calendar-8 fs-6 me-1"></i> Posted 2 days ago</span>
-                            </div>
-                            
-                            <p class="text-gray-600 fs-6 mb-4">Lead development of next-gen products using React, Node.js, and cloud technologies. Join a team of 50+ engineers.</p>
-                            
-                            <div class="d-flex align-items-center justify-content-between pt-3 border-top">
-                                <div>
-                                    <span class="job-salary fs-5">$140k - $180k</span>
-                                    <span class="text-muted fs-7 ms-2">+ Super</span>
-                                </div>
-                                <div class="d-flex gap-2">
-                                    <button class="btn btn-sm btn-light-primary">
-                                        <i class="ki-duotone ki-heart fs-5"></i>
-                                    </button>
-                                    <a href="{{ route('home') }}" class="btn btn-sm btn-primary">Apply Now</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Featured Job 2 -->
-                <div class="col-lg-6">
-                    <div class="card job-card job-featured hover-elevate-up">
-                        <div class="card-body p-6">
-                            <div class="d-flex align-items-start justify-content-between mb-4">
-                                <div class="d-flex align-items-center">
-                                    <div class="symbol symbol-60px me-4">
-                                        <span class="symbol-label bg-light-primary">
-                                            <img src="{{ asset('assets/media/svg/brand-logos/amazon.svg') }}" class="w-40px" alt="Company">
-                                        </span>
-                                    </div>
-                                    <div>
-                                        <a href="#" class="text-gray-900 fw-bold fs-4 text-hover-primary">Data Scientist - AI/ML</a>
-                                        <div class="text-muted fs-6">Amazon Web Services • Melbourne</div>
-                                    </div>
-                                </div>
-                                <span class="featured-badge">Featured</span>
-                            </div>
-                            
-                            <div class="d-flex flex-wrap gap-3 mb-4">
-                                <span class="job-tag"><i class="ki-duotone ki-briefcase fs-6 me-1"></i> Remote</span>
-                                <span class="job-tag"><i class="ki-duotone ki-location fs-6 me-1"></i> Hybrid</span>
-                                <span class="job-tag"><i class="ki-duotone ki-calendar-8 fs-6 me-1"></i> Posted 5 days ago</span>
-                            </div>
-                            
-                            <p class="text-gray-600 fs-6 mb-4">Drive innovation using machine learning models on massive datasets. Experience with Python, TensorFlow required.</p>
-                            
-                            <div class="d-flex align-items-center justify-content-between pt-3 border-top">
-                                <div>
-                                    <span class="job-salary fs-5">$160k - $220k</span>
-                                    <span class="text-muted fs-7 ms-2">+ Equity</span>
-                                </div>
-                                <div class="d-flex gap-2">
-                                    <button class="btn btn-sm btn-light-primary">
-                                        <i class="ki-duotone ki-heart fs-5"></i>
-                                    </button>
-                                    <a href="{{ route('home') }}" class="btn btn-sm btn-primary">Apply Now</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--end::Featured Jobs Section-->
+	<!--begin::Content-->
+	<div class="py-12 py-lg-15">
+		<div class="container">
+			<div class="row g-8">
+				<!--begin::Sidebar - Filters-->
+				<div class="col-lg-3">
+					<div class="card card-flush position-sticky" style="top: 100px;">
+						<div class="card-header border-0 pt-6">
+							<h5 class="card-title fw-bold text-gray-900">Filters</h5>
+							<div class="card-toolbar">
+								<a href="{{ route('jobs.index') }}" class="btn btn-sm btn-text btn-color-gray-600">Clear All</a>
+							</div>
+						</div>
 
-        <!--begin::Latest Jobs Section-->
-        <div class="mb-10">
-            <div class="d-flex align-items-center justify-content-between mb-5">
-                <div>
-                    <h3 class="fs-2 fw-bold text-gray-900 mb-1">📋 Latest Jobs</h3>
-                    <span class="text-muted fs-6">Newest opportunities from top companies</span>
-                </div>
-                <select class="form-select form-select-sm w-150px" data-control="select2" data-placeholder="Sort by">
-                    <option value="latest">Latest First</option>
-                    <option value="salary_high">Highest Salary</option>
-                    <option value="salary_low">Lowest Salary</option>
-                    <option value="popular">Most Popular</option>
-                </select>
-            </div>
-            
-            <div class="row g-5 job-grid">
-                <!-- Job 1 -->
-                <div class="col-lg-4 col-md-6">
-                    <div class="card h-100">
-                        <div class="card-body p-5">
-                            <div class="job-card-company mb-3">
-                                <div class="company-avatar">A</div>
-                                <div>
-                                    <h5 class="fw-bold text-gray-900 mb-0 fs-6">Product Manager</h5>
-                                    <span class="text-muted fs-7">Atlassian • Sydney</span>
-                                </div>
-                            </div>
-                            <div class="d-flex flex-wrap gap-2 mb-3">
-                                <span class="badge badge-light-primary">Full Time</span>
-                                <span class="badge badge-light-info">Hybrid</span>
-                                <span class="badge badge-light-success">$130k - $160k</span>
-                            </div>
-                            <p class="text-gray-600 fs-7 mb-3">Lead product strategy for enterprise collaboration tools. Work with cross-functional teams.</p>
-                            <div class="d-flex align-items-center justify-content-between pt-3 border-top">
-                                <span class="text-muted fs-7"><i class="ki-duotone ki-clock fs-6 me-1"></i> 3 days ago</span>
-                                <a href="{{ route('home') }}" class="btn btn-sm btn-light-primary">View Details</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Job 2 -->
-                <div class="col-lg-4 col-md-6">
-                    <div class="card h-100">
-                        <div class="card-body p-5">
-                            <div class="job-card-company mb-3">
-                                <div class="company-avatar" style="background: #FFF4E6; color: #F57C00;">C</div>
-                                <div>
-                                    <h5 class="fw-bold text-gray-900 mb-0 fs-6">UX/UI Designer</h5>
-                                    <span class="text-muted fs-7">Canva • Melbourne</span>
-                                </div>
-                            </div>
-                            <div class="d-flex flex-wrap gap-2 mb-3">
-                                <span class="badge badge-light-primary">Contract</span>
-                                <span class="badge badge-light-info">Remote</span>
-                                <span class="badge badge-light-success">$100k - $130k</span>
-                            </div>
-                            <p class="text-gray-600 fs-7 mb-3">Design beautiful user experiences for millions of users. Figma, Adobe Creative Suite required.</p>
-                            <div class="d-flex align-items-center justify-content-between pt-3 border-top">
-                                <span class="text-muted fs-7"><i class="ki-duotone ki-clock fs-6 me-1"></i> 5 days ago</span>
-                                <a href="{{ route('home') }}" class="btn btn-sm btn-light-primary">View Details</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Job 3 -->
-                <div class="col-lg-4 col-md-6">
-                    <div class="card h-100">
-                        <div class="card-body p-5">
-                            <div class="job-card-company mb-3">
-                                <div class="company-avatar" style="background: #E8F5E9; color: #2E7D32;">W</div>
-                                <div>
-                                    <h5 class="fw-bold text-gray-900 mb-0 fs-6">DevOps Engineer</h5>
-                                    <span class="text-muted fs-7">Woolworths • Brisbane</span>
-                                </div>
-                            </div>
-                            <div class="d-flex flex-wrap gap-2 mb-3">
-                                <span class="badge badge-light-primary">Full Time</span>
-                                <span class="badge badge-light-info">On-site</span>
-                                <span class="badge badge-light-success">$120k - $155k</span>
-                            </div>
-                            <p class="text-gray-600 fs-7 mb-3">Manage cloud infrastructure and CI/CD pipelines. Experience with AWS, Docker, Kubernetes.</p>
-                            <div class="d-flex align-items-center justify-content-between pt-3 border-top">
-                                <span class="text-muted fs-7"><i class="ki-duotone ki-clock fs-6 me-1"></i> 1 week ago</span>
-                                <a href="{{ route('home') }}" class="btn btn-sm btn-light-primary">View Details</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Job 4 -->
-                <div class="col-lg-4 col-md-6">
-                    <div class="card h-100">
-                        <div class="card-body p-5">
-                            <div class="job-card-company mb-3">
-                                <div class="company-avatar" style="background: #FCE4EC; color: #C62828;">M</div>
-                                <div>
-                                    <h5 class="fw-bold text-gray-900 mb-0 fs-6">Marketing Manager</h5>
-                                    <span class="text-muted fs-7">Macquarie Bank • Sydney</span>
-                                </div>
-                            </div>
-                            <div class="d-flex flex-wrap gap-2 mb-3">
-                                <span class="badge badge-light-primary">Full Time</span>
-                                <span class="badge badge-light-info">Hybrid</span>
-                                <span class="badge badge-light-success">$110k - $140k</span>
-                            </div>
-                            <p class="text-gray-600 fs-7 mb-3">Lead marketing campaigns for financial products. Experience in fintech or banking preferred.</p>
-                            <div class="d-flex align-items-center justify-content-between pt-3 border-top">
-                                <span class="text-muted fs-7"><i class="ki-duotone ki-clock fs-6 me-1"></i> 2 weeks ago</span>
-                                <a href="{{ route('home') }}" class="btn btn-sm btn-light-primary">View Details</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Job 5 -->
-                <div class="col-lg-4 col-md-6">
-                    <div class="card h-100">
-                        <div class="card-body p-5">
-                            <div class="job-card-company mb-3">
-                                <div class="company-avatar" style="background: #E8EAF6; color: #283593;">T</div>
-                                <div>
-                                    <h5 class="fw-bold text-gray-900 mb-0 fs-6">Network Engineer</h5>
-                                    <span class="text-muted fs-7">Telstra • Perth</span>
-                                </div>
-                            </div>
-                            <div class="d-flex flex-wrap gap-2 mb-3">
-                                <span class="badge badge-light-primary">Full Time</span>
-                                <span class="badge badge-light-info">On-site</span>
-                                <span class="badge badge-light-success">$130k - $170k</span>
-                            </div>
-                            <p class="text-gray-600 fs-7 mb-3">Design and maintain network infrastructure. CCNA/CCNP certification required.</p>
-                            <div class="d-flex align-items-center justify-content-between pt-3 border-top">
-                                <span class="text-muted fs-7"><i class="ki-duotone ki-clock fs-6 me-1"></i> 2 weeks ago</span>
-                                <a href="{{ route('home') }}" class="btn btn-sm btn-light-primary">View Details</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Job 6 -->
-                <div class="col-lg-4 col-md-6">
-                    <div class="card h-100">
-                        <div class="card-body p-5">
-                            <div class="job-card-company mb-3">
-                                <div class="company-avatar" style="background: #FFF3E0; color: #E65100;">R</div>
-                                <div>
-                                    <h5 class="fw-bold text-gray-900 mb-0 fs-6">HR Business Partner</h5>
-                                    <span class="text-muted fs-7">Rio Tinto • Adelaide</span>
-                                </div>
-                            </div>
-                            <div class="d-flex flex-wrap gap-2 mb-3">
-                                <span class="badge badge-light-primary">Full Time</span>
-                                <span class="badge badge-light-info">Hybrid</span>
-                                <span class="badge badge-light-success">$95k - $125k</span>
-                            </div>
-                            <p class="text-gray-600 fs-7 mb-3">Partner with business leaders on talent strategy and employee relations. HR experience required.</p>
-                            <div class="d-flex align-items-center justify-content-between pt-3 border-top">
-                                <span class="text-muted fs-7"><i class="ki-duotone ki-clock fs-6 me-1"></i> 3 weeks ago</span>
-                                <a href="{{ route('home') }}" class="btn btn-sm btn-light-primary">View Details</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Pagination -->
-            <div class="d-flex flex-center mt-8">
-                <ul class="pagination">
-                    <li class="page-item previous disabled">
-                        <a href="#" class="page-link"><i class="ki-duotone ki-arrow-left"></i></a>
-                    </li>
-                    <li class="page-item active"><a href="#" class="page-link">1</a></li>
-                    <li class="page-item"><a href="#" class="page-link">2</a></li>
-                    <li class="page-item"><a href="#" class="page-link">3</a></li>
-                    <li class="page-item"><a href="#" class="page-link">4</a></li>
-                    <li class="page-item"><a href="#" class="page-link">5</a></li>
-                    <li class="page-item next">
-                        <a href="#" class="page-link"><i class="ki-duotone ki-arrow-right"></i></a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <!--end::Latest Jobs Section-->
-        
-    </div>
-</div>
-<!--end::Content-->
+						<div class="card-body pt-0">
+							<form id="filter-form" action="{{ route('jobs.index') }}" method="GET">
+								<!--Search Filter-->
+								<div class="mb-6">
+									<label class="form-label fw-semibold text-gray-900 mb-3">Search Keywords</label>
+									<input type="text" name="search" class="form-control form-control-solid" placeholder="e.g. Developer, Manager" value="{{ request('search') }}">
+								</div>
+
+								<!--Job Type Filter-->
+								<div class="mb-6">
+									<label class="form-label fw-semibold text-gray-900 mb-3">Job Type</label>
+									<div class="form-check mb-2">
+										<input class="form-check-input" type="checkbox" name="job_type[]" value="full-time" id="job-full-time" {{ in_array('full-time', (array)request('job_type')) ? 'checked' : '' }}>
+										<label class="form-check-label text-gray-700" for="job-full-time">Full Time</label>
+									</div>
+									<div class="form-check mb-2">
+										<input class="form-check-input" type="checkbox" name="job_type[]" value="part-time" id="job-part-time" {{ in_array('part-time', (array)request('job_type')) ? 'checked' : '' }}>
+										<label class="form-check-label text-gray-700" for="job-part-time">Part Time</label>
+									</div>
+									<div class="form-check mb-2">
+										<input class="form-check-input" type="checkbox" name="job_type[]" value="contract" id="job-contract" {{ in_array('contract', (array)request('job_type')) ? 'checked' : '' }}>
+										<label class="form-check-label text-gray-700" for="job-contract">Contract</label>
+									</div>
+									<div class="form-check">
+										<input class="form-check-input" type="checkbox" name="job_type[]" value="temporary" id="job-temporary" {{ in_array('temporary', (array)request('job_type')) ? 'checked' : '' }}>
+										<label class="form-check-label text-gray-700" for="job-temporary">Temporary</label>
+									</div>
+								</div>
+
+								<!--Work Mode Filter-->
+								<div class="mb-6">
+									<label class="form-label fw-semibold text-gray-900 mb-3">Work Mode</label>
+									<div class="form-check mb-2">
+										<input class="form-check-input" type="checkbox" name="work_mode[]" value="on-site" id="mode-on-site" {{ in_array('on-site', (array)request('work_mode')) ? 'checked' : '' }}>
+										<label class="form-check-label text-gray-700" for="mode-on-site">On-Site</label>
+									</div>
+									<div class="form-check mb-2">
+										<input class="form-check-input" type="checkbox" name="work_mode[]" value="remote" id="mode-remote" {{ in_array('remote', (array)request('work_mode')) ? 'checked' : '' }}>
+										<label class="form-check-label text-gray-700" for="mode-remote">Remote</label>
+									</div>
+									<div class="form-check">
+										<input class="form-check-input" type="checkbox" name="work_mode[]" value="hybrid" id="mode-hybrid" {{ in_array('hybrid', (array)request('work_mode')) ? 'checked' : '' }}>
+										<label class="form-check-label text-gray-700" for="mode-hybrid">Hybrid</label>
+									</div>
+								</div>
+
+								<!--Category Filter-->
+								<div class="mb-6">
+									<label class="form-label fw-semibold text-gray-900 mb-3">Category</label>
+									<select name="category" class="form-select form-select-solid">
+										<option value="">All Categories</option>
+										<option value="it" {{ request('category') === 'it' ? 'selected' : '' }}>IT & Software</option>
+										<option value="finance" {{ request('category') === 'finance' ? 'selected' : '' }}>Finance & Banking</option>
+										<option value="healthcare" {{ request('category') === 'healthcare' ? 'selected' : '' }}>Healthcare</option>
+										<option value="education" {{ request('category') === 'education' ? 'selected' : '' }}>Education</option>
+										<option value="retail" {{ request('category') === 'retail' ? 'selected' : '' }}>Retail & Sales</option>
+										<option value="engineering" {{ request('category') === 'engineering' ? 'selected' : '' }}>Engineering</option>
+										<option value="marketing" {{ request('category') === 'marketing' ? 'selected' : '' }}>Marketing</option>
+										<option value="hr" {{ request('category') === 'hr' ? 'selected' : '' }}>Human Resources</option>
+									</select>
+								</div>
+
+								<!--Location Filter-->
+								<div class="mb-6">
+									<label class="form-label fw-semibold text-gray-900 mb-3">Location</label>
+									<select name="location" class="form-select form-select-solid">
+										<option value="">All Locations</option>
+										<option value="sydney" {{ request('location') === 'sydney' ? 'selected' : '' }}>Sydney, NSW</option>
+										<option value="melbourne" {{ request('location') === 'melbourne' ? 'selected' : '' }}>Melbourne, VIC</option>
+										<option value="brisbane" {{ request('location') === 'brisbane' ? 'selected' : '' }}>Brisbane, QLD</option>
+										<option value="perth" {{ request('location') === 'perth' ? 'selected' : '' }}>Perth, WA</option>
+										<option value="adelaide" {{ request('location') === 'adelaide' ? 'selected' : '' }}>Adelaide, SA</option>
+										<option value="hobart" {{ request('location') === 'hobart' ? 'selected' : '' }}>Hobart, TAS</option>
+										<option value="darwin" {{ request('location') === 'darwin' ? 'selected' : '' }}>Darwin, NT</option>
+									</select>
+								</div>
+
+								<!--Salary Range Filter-->
+								<div class="mb-6">
+									<label class="form-label fw-semibold text-gray-900 mb-3">Salary Range</label>
+									<select name="salary_range" class="form-select form-select-solid">
+										<option value="">Any Salary</option>
+										<option value="0-50" {{ request('salary_range') === '0-50' ? 'selected' : '' }}>$0 - $50K</option>
+										<option value="50-75" {{ request('salary_range') === '50-75' ? 'selected' : '' }}>$50K - $75K</option>
+										<option value="75-100" {{ request('salary_range') === '75-100' ? 'selected' : '' }}>$75K - $100K</option>
+										<option value="100-150" {{ request('salary_range') === '100-150' ? 'selected' : '' }}>$100K - $150K</option>
+										<option value="150-200" {{ request('salary_range') === '150-200' ? 'selected' : '' }}>$150K - $200K</option>
+										<option value="200+" {{ request('salary_range') === '200+' ? 'selected' : '' }}>$200K+</option>
+									</select>
+								</div>
+
+								<!--Experience Level Filter-->
+								<div class="mb-8">
+									<label class="form-label fw-semibold text-gray-900 mb-3">Experience Level</label>
+									<div class="form-check mb-2">
+										<input class="form-check-input" type="checkbox" name="experience[]" value="entry" id="exp-entry" {{ in_array('entry', (array)request('experience')) ? 'checked' : '' }}>
+										<label class="form-check-label text-gray-700" for="exp-entry">Entry Level (0-2 years)</label>
+									</div>
+									<div class="form-check mb-2">
+										<input class="form-check-input" type="checkbox" name="experience[]" value="mid" id="exp-mid" {{ in_array('mid', (array)request('experience')) ? 'checked' : '' }}>
+										<label class="form-check-label text-gray-700" for="exp-mid">Mid-Level (2-5 years)</label>
+									</div>
+									<div class="form-check">
+										<input class="form-check-input" type="checkbox" name="experience[]" value="senior" id="exp-senior" {{ in_array('senior', (array)request('experience')) ? 'checked' : '' }}>
+										<label class="form-check-label text-gray-700" for="exp-senior">Senior (5+ years)</label>
+									</div>
+								</div>
+
+								<button type="submit" class="btn btn-primary w-100">Apply Filters</button>
+							</form>
+						</div>
+					</div>
+				</div>
+				<!--end::Sidebar-->
+
+				<!--begin::Main Content-->
+				<div class="col-lg-9">
+					<!--begin::Sort Controls-->
+					<div class="d-flex align-items-center justify-content-between mb-6">
+						<div class="text-gray-600 fw-semibold fs-6">
+							Showing <span class="text-gray-900">{{ count($jobs ?? []) }}</span> jobs
+						</div>
+						<select id="sort-select" class="form-select form-select-solid w-200px">
+							<option value="latest">Latest First</option>
+							<option value="salary_high">Highest Salary</option>
+							<option value="salary_low">Lowest Salary</option>
+							<option value="popular">Most Viewed</option>
+						</select>
+					</div>
+					<!--end::Sort Controls-->
+
+					<!--begin::Featured Jobs Section-->
+					@if($featuredJobs && count($featuredJobs) > 0)
+						<div class="mb-10">
+							<div class="mb-4">
+								<h5 class="fw-bold text-gray-900 mb-1">Featured Opportunities</h5>
+								<p class="text-gray-600 fs-7">Premium positions handpicked for you</p>
+							</div>
+
+							<div class="row g-6" id="featured-jobs-container">
+								@foreach($featuredJobs as $job)
+									<div class="col-lg-12">
+										<div class="card card-flush border-2" style="border-color: #20AA3E; transition: all 0.3s ease;">
+											<div class="card-body p-6">
+												<div class="d-flex align-items-start gap-4 mb-4">
+													<div class="symbol symbol-70px flex-shrink-0">
+														<span class="symbol-label bg-light-{{ $loop->index % 4 === 0 ? 'primary' : ($loop->index % 4 === 1 ? 'success' : ($loop->index % 4 === 2 ? 'warning' : 'info')) }} rounded">
+															<img src="{{ asset('assets/media/svg/brand-logos/google-icon.svg') }}" alt="Company Logo" class="w-50px">
+														</span>
+													</div>
+
+													<div class="flex-grow-1">
+														<div class="d-flex align-items-center gap-3 mb-2">
+															<h5 class="text-gray-900 fw-bold fs-5 mb-0">{{ $job['title'] ?? 'Senior Developer' }}</h5>
+															<span class="badge badge-success" style="background-color: #20AA3E;">Featured</span>
+														</div>
+														<div class="d-flex align-items-center gap-4 flex-wrap">
+															<span class="text-gray-600 fs-7">{{ $job['company'] ?? 'Company Name' }} • {{ $job['location'] ?? 'Location' }}</span>
+															<span class="text-gray-500 fs-7"><i class="ki-duotone ki-clock fs-5 me-1"></i>{{ $job['posted_date'] ?? '2 days ago' }}</span>
+														</div>
+													</div>
+
+													<div class="flex-shrink-0">
+														<button class="btn btn-icon btn-sm btn-light-primary" data-bs-toggle="tooltip" title="Save Job">
+															<i class="ki-duotone ki-heart fs-5"></i>
+														</button>
+													</div>
+												</div>
+
+												<p class="text-gray-700 fs-6 mb-4">{{ $job['description'] ?? 'Great opportunity to join a dynamic team...' }}</p>
+
+												<div class="d-flex align-items-center flex-wrap gap-3 mb-4">
+													<span class="badge badge-light-primary">{{ $job['job_type'] ?? 'Full Time' }}</span>
+													<span class="badge badge-light-success">{{ $job['work_mode'] ?? 'On-Site' }}</span>
+													<span class="badge badge-light-info">{{ $job['experience'] ?? '5+ Years' }}</span>
+													<span class="text-gray-700 fw-bold">{{ $job['salary'] ?? '$140k - $180k' }}</span>
+												</div>
+
+												<a href="{{ route('jobs.show', $job['id'] ?? '#') }}" class="btn btn-primary btn-sm">
+													View Details & Apply
+												</a>
+											</div>
+										</div>
+									</div>
+								@endforeach
+							</div>
+						</div>
+					@endif
+					<!--end::Featured Jobs Section-->
+
+					<!--begin::Regular Jobs Section-->
+					<div class="mb-10">
+						@if(!$featuredJobs || count($featuredJobs) === 0)
+							<div class="mb-4">
+								<h5 class="fw-bold text-gray-900 mb-1">Latest Opportunities</h5>
+								<p class="text-gray-600 fs-7">Find your next career opportunity</p>
+							</div>
+						@else
+							<div class="mb-4">
+								<h5 class="fw-bold text-gray-900 mb-1">All Opportunities</h5>
+								<p class="text-gray-600 fs-7">Browse all available positions</p>
+							</div>
+						@endif
+
+						<div class="row g-6" id="jobs-container">
+							@forelse($jobs ?? [] as $job)
+								<div class="col-lg-6 job-card-wrapper">
+									<div class="card card-flush h-100" style="transition: all 0.3s ease;">
+										<div class="card-body p-6">
+											<div class="d-flex align-items-start gap-3 mb-3">
+												<div class="symbol symbol-60px flex-shrink-0">
+													<span class="symbol-label bg-light-{{ $loop->index % 4 === 0 ? 'primary' : ($loop->index % 4 === 1 ? 'success' : ($loop->index % 4 === 2 ? 'warning' : 'info')) }} rounded">
+														<span class="fw-bold fs-5" style="color: {{ $loop->index % 4 === 0 ? '#0AB5D9' : ($loop->index % 4 === 1 ? '#20AA3E' : ($loop->index % 4 === 2 ? '#F57C00' : '#5861AC')) }};">
+															{{ substr($job['company'] ?? 'C', 0, 1) }}
+														</span>
+													</span>
+												</div>
+
+												<div class="flex-grow-1">
+													<h5 class="text-gray-900 fw-bold fs-6 mb-1">{{ $job['title'] ?? 'Job Title' }}</h5>
+													<p class="text-gray-600 fs-7 mb-0">{{ $job['company'] ?? 'Company' }} • {{ $job['location'] ?? 'Location' }}</p>
+												</div>
+
+												<button class="btn btn-icon btn-sm btn-light-primary flex-shrink-0" data-bs-toggle="tooltip" title="Save Job">
+													<i class="ki-duotone ki-heart fs-5"></i>
+												</button>
+											</div>
+
+											<div class="d-flex flex-wrap gap-2 mb-3">
+												<span class="badge badge-light-primary fs-7">{{ $job['job_type'] ?? 'Full Time' }}</span>
+												<span class="badge badge-light-success fs-7">{{ $job['work_mode'] ?? 'On-Site' }}</span>
+												<span class="badge badge-light-info fs-7">{{ $job['experience'] ?? '5+ Years' }}</span>
+											</div>
+
+											<p class="text-gray-700 fs-7 mb-4 text-truncate" style="max-height: 40px;">{{ $job['description'] ?? 'Job description here...' }}</p>
+
+											<div class="d-flex align-items-center justify-content-between pt-3 border-top">
+												<div>
+													<span class="fw-bold text-success fs-6">{{ $job['salary'] ?? '$120k - $150k' }}</span>
+													<span class="text-gray-500 fs-7 ms-2">{{ $job['posted_date'] ?? '5 days ago' }}</span>
+												</div>
+												<a href="{{ route('jobs.show', $job['id'] ?? '#') }}" class="btn btn-sm btn-light-primary">
+													View <i class="ki-duotone ki-arrow-right fs-5 ms-1"></i>
+												</a>
+											</div>
+										</div>
+									</div>
+								</div>
+							@empty
+								<div class="col-lg-12">
+									<div class="alert alert-info" role="alert">
+										<div class="d-flex align-items-center">
+											<i class="ki-duotone ki-information-2 fs-2 me-3 text-info"></i>
+											<div>
+												<h5 class="mb-1">No jobs found</h5>
+												<p class="mb-0">Try adjusting your search or filter criteria to find more opportunities.</p>
+											</div>
+										</div>
+									</div>
+								</div>
+							@endforelse
+						</div>
+
+						<!--begin::Show More Button-->
+						<div class="text-center mt-10" id="show-more-container">
+							<button type="button" class="btn btn-outline btn-outline-primary" id="show-more-btn">
+								<i class="ki-duotone ki-arrow-down fs-4 me-2"></i> Load More Jobs
+							</button>
+							<div class="spinner-border spinner-border-sm text-primary d-none mt-3" id="loading-spinner" role="status">
+								<span class="visually-hidden">Loading...</span>
+							</div>
+						</div>
+						<!--end::Show More Button-->
+					</div>
+					<!--end::Regular Jobs Section-->
+
+					<!--begin::Pagination (Optional)-->
+					@if(isset($pagination) && $pagination)
+						<div class="d-flex justify-content-center">
+							<nav aria-label="Page navigation">
+								<ul class="pagination">
+									<li class="page-item {{ $pagination['current'] === 1 ? 'disabled' : '' }}">
+										<a class="page-link" href="{{ route('jobs.index', array_merge(request()->query(), ['page' => $pagination['current'] - 1])) }}">Previous</a>
+									</li>
+
+									@for($i = 1; $i <= $pagination['total']; $i++)
+										<li class="page-item {{ $i === $pagination['current'] ? 'active' : '' }}">
+											<a class="page-link" href="{{ route('jobs.index', array_merge(request()->query(), ['page' => $i])) }}">{{ $i }}</a>
+										</li>
+									@endfor
+
+									<li class="page-item {{ $pagination['current'] === $pagination['total'] ? 'disabled' : '' }}">
+										<a class="page-link" href="{{ route('jobs.index', array_merge(request()->query(), ['page' => $pagination['current'] + 1])) }}">Next</a>
+									</li>
+								</ul>
+							</nav>
+						</div>
+					@endif
+					<!--end::Pagination-->
+				</div>
+				<!--end::Main Content-->
+			</div>
+		</div>
+	</div>
+	<!--end::Content-->
+
 @endsection
 
 @push('scripts')
 <script>
-    // Initialize tooltips
-    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
-    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-        return new bootstrap.Tooltip(tooltipTriggerEl)
-    });
-    
-    // Favorite job toggle
-    document.querySelectorAll('.btn-heart').forEach(btn => {
-        btn.addEventListener('click', function() {
-            this.classList.toggle('text-danger');
-            const icon = this.querySelector('i');
-            icon.classList.toggle('ki-heart');
-            icon.classList.toggle('ki-heart-filled');
-        });
-    });
+	document.addEventListener('DOMContentLoaded', function() {
+		const showMoreBtn = document.getElementById('show-more-btn');
+		const loadingSpinner = document.getElementById('loading-spinner');
+		const jobsContainer = document.getElementById('jobs-container');
+		let currentPage = 1;
+		let isLoading = false;
+
+		// Show More functionality
+		if (showMoreBtn) {
+			showMoreBtn.addEventListener('click', function() {
+				if (isLoading) return;
+
+				isLoading = true;
+				loadingSpinner.classList.remove('d-none');
+				showMoreBtn.disabled = true;
+
+				// Simulate loading delay
+				setTimeout(() => {
+					isLoading = false;
+					loadingSpinner.classList.add('d-none');
+					showMoreBtn.disabled = false;
+
+					// In production, this would fetch more jobs via AJAX
+					// For now, we'll show a notification
+					Swal.fire({
+						title: 'More Jobs Loaded',
+						text: 'Check back soon for additional opportunities',
+						icon: 'info',
+						timer: 2000,
+						showConfirmButton: false
+					});
+				}, 1000);
+			});
+		}
+
+		// Sort functionality
+		const sortSelect = document.getElementById('sort-select');
+		if (sortSelect) {
+			sortSelect.addEventListener('change', function() {
+				const sortValue = this.value;
+				const currentUrl = new URL(window.location);
+				currentUrl.searchParams.set('sort', sortValue);
+				window.location.href = currentUrl.toString();
+			});
+		}
+
+		// Card hover effects
+		document.querySelectorAll('.job-card-wrapper').forEach(card => {
+			card.querySelector('.card').addEventListener('mouseenter', function() {
+				this.style.transform = 'translateY(-4px)';
+				this.style.boxShadow = '0 8px 30px rgba(0,0,0,0.08)';
+			});
+			card.querySelector('.card').addEventListener('mouseleave', function() {
+				this.style.transform = 'translateY(0)';
+				this.style.boxShadow = '';
+			});
+		});
+
+		// Favorite button functionality
+		document.querySelectorAll('[data-bs-toggle="tooltip"]').forEach(element => {
+			if (element.title.includes('Save')) {
+				element.addEventListener('click', function(e) {
+					e.preventDefault();
+					const icon = this.querySelector('i');
+					icon.classList.toggle('text-danger');
+					icon.classList.toggle('ki-heart');
+					icon.classList.toggle('ki-heart-filled');
+				});
+			}
+		});
+
+		// Initialize tooltips
+		const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+		tooltipTriggerList.map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
+
+		// Filter form auto-submission on checkbox change (optional)
+		const filterForm = document.getElementById('filter-form');
+		if (filterForm) {
+			filterForm.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+				checkbox.addEventListener('change', function() {
+					// Uncomment below to auto-submit on filter change
+					// filterForm.submit();
+				});
+			});
+		}
+	});
 </script>
+@endpush
+
+@push('styles')
+<style>
+	.card {
+		border: 1px solid rgba(0, 0, 0, 0.08);
+	}
+
+	.card:hover {
+		border-color: rgba(0, 0, 0, 0.12);
+	}
+
+	.position-sticky {
+		position: sticky;
+		top: 100px;
+	}
+
+	@media (max-width: 768px) {
+		.position-sticky {
+			position: static;
+			top: auto;
+		}
+	}
+
+	.badge {
+		font-weight: 600;
+		font-size: 0.75rem;
+		letter-spacing: 0.5px;
+	}
+
+	.form-select, .form-control {
+		border-radius: 0.5rem;
+		border-color: rgba(0, 0, 0, 0.08);
+	}
+
+	.form-select:focus, .form-control:focus {
+		border-color: #20AA3E;
+		box-shadow: 0 0 0 0.2rem rgba(32, 170, 62, 0.15);
+	}
+
+	.btn-outline-primary {
+		color: #0AB5D9;
+		border-color: #0AB5D9;
+	}
+
+	.btn-outline-primary:hover {
+		background-color: #0AB5D9;
+		color: white;
+	}
+
+	.text-truncate {
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+</style>
 @endpush

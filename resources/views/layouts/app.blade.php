@@ -12,7 +12,7 @@
 		<meta property="og:title" content="{{ config('app.name', 'JobMatch') }}" />
 		<meta property="og:site_name" content="{{ config('app.name', 'JobMatch') }}" />
 		<link rel="canonical" href="{{ url('/') }}" />
-		<link rel="shortcut icon" href="{{ asset('fav.png') }}" />
+		<link rel="shortcut icon" href="{{ asset('assets/media/logos/favicon.png') }}" />
 
 		<!--begin::Fonts(mandatory for all pages)-->
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700" />
@@ -154,6 +154,7 @@
 			<!--begin::Header-->
 			@include('layouts.header')
 			<!--end::Header-->
+
 
 			<!--begin::Main Content-->
 			@yield('content')
