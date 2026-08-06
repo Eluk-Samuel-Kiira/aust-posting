@@ -4,13 +4,16 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Home\{ HomeController };
 
-
-
 // Landing page
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
+
+
+use App\Http\Controllers\Jobs\{ JobsController };
 // Jobs listing
-Route::get('/jobs', [HomeController::class, 'index'])->name('jobs.index');
+Route::get('/jobs', [JobsController::class, 'jobs'])->name('jobs.index');
+
+
 
 // Job detail
 Route::get('/jobs/{id}', [HomeController::class, 'show'])->name('jobs.show');
@@ -26,6 +29,10 @@ Route::get('/register/employer', function () {
 Route::get('/login', function () {
     return view('auth.login');
 })->name('login');
+
+Route::get('/register', function () {
+    return view('auth.login-register');
+})->name('register');
 
 Route::get('/contact', function () {
     return view('pages.contact');

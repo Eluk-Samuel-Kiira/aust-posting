@@ -2,17 +2,49 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 	<!--begin::Head-->
 	<head>
-		<title>{{ config('app.name', 'JobMatch') }} - @yield('title', 'Find Your Best Talent')</title>
+		<!-- Country Meta -->
+		<meta name="country-code" content="{{ country_code() }}" />
+		<meta name="country-name" content="{{ country_name() }}" />
+		
+		<title>{{ config('app.name', 'JobMatch') }} - @yield('title', country_name() . ' - Find Your Best Talent')</title>
 		<meta charset="utf-8" />
-		<meta name="description" content="@yield('meta_description', 'Australia\'s leading job posting platform with AI-powered CV screening, professional rewriting services, and WhatsApp integration for seamless hiring.')" />
-		<meta name="keywords" content="jobs australia, recruitment, AI hiring, CV review, job posting, talent matching" />
+
+		<meta name="description" content="@yield('meta_description', country_name() . '\'s leading job posting platform with AI-powered CV screening, professional rewriting services, and WhatsApp integration for seamless hiring in ' . country_name() . '.')" />
+		<meta name="keywords" content="@yield('keywords', 'jobs ' . strtolower(country_name()) . ', recruitment, AI hiring, CV review, job posting, talent matching, ' . strtolower(country_name()) . ' jobs, career opportunities')" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<meta property="og:locale" content="en_AU" />
+		
+		<!-- Open Graph -->
+		<meta property="og:locale" content="en_{{ country_code() }}" />
 		<meta property="og:type" content="website" />
-		<meta property="og:title" content="{{ config('app.name', 'JobMatch') }}" />
-		<meta property="og:site_name" content="{{ config('app.name', 'JobMatch') }}" />
-		<link rel="canonical" href="{{ url('/') }}" />
-		<link rel="shortcut icon" href="{{ asset('assets/media/logos/favicon.png') }}" />
+		<meta property="og:title" content="{{ config('app.name', 'JobMatch') }} - {{ country_name() }}" />
+		<meta property="og:site_name" content="{{ config('app.name', 'JobMatch') }} - {{ country_name() }}" />
+		<meta property="og:description" content="@yield('og_description', 'Find the best jobs and talent in ' . country_name() . '. Post jobs, hire candidates, and grow your career with AI-powered matching.')" />
+		<meta property="og:url" content="{{ url('/') }}" />
+		<meta property="og:image" content="{{ country_logo() }}" />
+		
+		<!-- Twitter Cards -->
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content="{{ config('app.name', 'JobMatch') }} - {{ country_name() }}" />
+		<meta name="twitter:description" content="@yield('twitter_description', 'Find jobs and talent in ' . country_name() . '. Post jobs, hire candidates, and grow your career with AI-powered matching.')" />
+		<meta name="twitter:image" content="{{ country_logo() }}" />
+		
+		<!-- Canonical -->
+		<link rel="canonical" href="@yield('canonical_url', url('/'))" />
+		
+		<!-- Favicon -->
+		<link rel="shortcut icon" href="{{ country_favicon() }}" />
+		<link rel="apple-touch-icon" href="{{ country_favicon() }}" />
+
+		<!-- Hreflang Tags -->
+		@if(count(all_countries()) > 0)
+			@foreach(all_countries() as $country)
+				@if(isset($country['code']) && isset($country['domain']))
+					<link rel="alternate" hreflang="en-{{ strtoupper($country['code']) }}" 
+						  href="{{ str_replace(config('app.country_domain'), $country['domain'], url('/')) }}" />
+				@endif
+			@endforeach
+			<link rel="alternate" hreflang="x-default" href="{{ url('/') }}" />
+		@endif
 
 		<!--begin::Fonts(mandatory for all pages)-->
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700" />
@@ -28,93 +60,6 @@
         <!-- DataTables CSS -->
         <link href="{{ asset('assets/plugins/custom/datatables/datatables.bundle.css') }}" rel="stylesheet" type="text/css" />
 		<link href="{{ asset('assets/plugins/custom/select2/select2.bundle.css') }}" rel="stylesheet" />
-
-        <!-- Add these for better job cards styling -->
-        <style>
-            .job-card {
-                transition: all 0.3s ease;
-                border: 1px solid rgba(0,0,0,0.08);
-            }
-            .job-card:hover {
-                transform: translateY(-5px);
-                box-shadow: 0 10px 40px rgba(0,0,0,0.08);
-                border-color: transparent;
-            }
-            .job-featured {
-                border-left: 4px solid #20AA3E;
-                background: linear-gradient(to right, rgba(32,170,62,0.03), transparent);
-            }
-            .job-company-logo {
-                width: 60px;
-                height: 60px;
-                object-fit: cover;
-                border-radius: 12px;
-                border: 1px solid rgba(0,0,0,0.06);
-            }
-            .job-tag {
-                background: rgba(32,170,62,0.08);
-                color: #20AA3E;
-                padding: 4px 12px;
-                border-radius: 20px;
-                font-size: 12px;
-                font-weight: 600;
-            }
-            .job-salary {
-                color: #03A588;
-                font-weight: 700;
-            }
-            .job-meta-icon {
-                color: #7E8299;
-                margin-right: 6px;
-            }
-            .similar-job-item {
-                padding: 12px 16px;
-                border-radius: 8px;
-                transition: all 0.2s;
-                border: 1px solid rgba(0,0,0,0.06);
-            }
-            .similar-job-item:hover {
-                background: #F5F8FA;
-                border-color: #20AA3E;
-            }
-            
-            .job-grid .card {
-                transition: all 0.3s ease;
-            }
-            .job-grid .card:hover {
-                transform: translateY(-4px);
-                box-shadow: 0 8px 30px rgba(0,0,0,0.08);
-            }
-            
-            .featured-badge {
-                background: linear-gradient(90deg, #20AA3E, #03A588);
-                color: white;
-                padding: 2px 14px;
-                border-radius: 20px;
-                font-size: 11px;
-                font-weight: 600;
-                letter-spacing: 0.5px;
-            }
-            
-            .job-card-company {
-                display: flex;
-                align-items: center;
-                gap: 12px;
-            }
-            
-            .job-card-company .company-avatar {
-                width: 48px;
-                height: 48px;
-                border-radius: 10px;
-                background: #F1FAF8;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                font-weight: 700;
-                font-size: 18px;
-                color: #20AA3E;
-            }
-        </style>
 
 		<script>
 			// Frame-busting to prevent site from being loaded within a frame without permission

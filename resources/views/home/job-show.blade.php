@@ -1,628 +1,231 @@
 @extends('layouts.app')
 
-@section('title', 'Senior Software Developer at TechCorp Australia')
-@section('meta_description', 'Senior Software Developer position at TechCorp Australia. Competitive salary, remote work, and benefits included.')
-
-@section('content')
-
-	<!--begin::Toolbar-->
-	<div class="bg-light py-8 py-lg-12">
-		<div class="container">
-			<div class="d-flex align-items-center justify-content-between flex-wrap gap-3">
-				<a href="{{ route('jobs.index') }}" class="btn btn-sm btn-light">
-					<i class="ki-duotone ki-arrow-left fs-4 me-2"></i> Back to Jobs
-				</a>
-				<div class="d-flex gap-2">
-					<button class="btn btn-icon btn-light-primary" data-bs-toggle="tooltip" title="Save Job">
-						<i class="ki-duotone ki-heart fs-5"></i>
-					</button>
-					<button class="btn btn-icon btn-light-primary" data-bs-toggle="tooltip" title="Share Job">
-						<i class="ki-duotone ki-share fs-5"></i>
-					</button>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!--end::Toolbar-->
-
-	<!--begin::Content-->
-	<div class="py-12 py-lg-15">
-		<div class="container">
-			<div class="row g-8">
-				<!--begin::Main Content-->
-				<div class="col-lg-8">
-					<!--begin::Job Header-->
-					<div class="card card-flush mb-8">
-						<div class="card-body p-8 p-lg-10">
-							<div class="d-flex align-items-start gap-6 mb-6">
-								<div class="symbol symbol-100px flex-shrink-0">
-									<span class="symbol-label bg-light-primary rounded">
-										<img src="{{ asset('assets/media/svg/brand-logos/techcorp.svg') }}" alt="Company Logo" class="w-75px">
-									</span>
-								</div>
-
-								<div class="flex-grow-1">
-									<div class="d-flex align-items-center gap-3 mb-3">
-										<h1 class="fs-1 fw-bold text-gray-900 mb-0">Senior Software Developer</h1>
-										<span class="badge badge-success" style="background-color: #20AA3E;">Active</span>
-									</div>
-
-									<div class="d-flex align-items-center flex-wrap gap-4 mb-4">
-										<span class="fw-semibold text-gray-700">TechCorp Australia</span>
-										<span class="text-gray-600"><i class="ki-duotone ki-geolocation fs-5 me-2"></i>Sydney, NSW</span>
-										<span class="text-gray-600"><i class="ki-duotone ki-clock fs-5 me-2"></i>Posted 3 days ago</span>
-									</div>
-
-									<div class="d-flex flex-wrap gap-2 mb-4">
-										<span class="badge badge-light-primary">Full Time</span>
-										<span class="badge badge-light-success">Remote</span>
-										<span class="badge badge-light-info">5+ Years Experience</span>
-									</div>
-
-									<div class="d-flex align-items-center gap-4">
-										<div>
-											<span class="text-gray-600 fs-7 d-block">Salary Range</span>
-											<span class="fw-bold text-success fs-5">$150,000 - $200,000 AUD</span>
-										</div>
-										<div class="border-start ps-4">
-											<span class="text-gray-600 fs-7 d-block">Position Type</span>
-											<span class="fw-bold text-gray-900 fs-5">Direct Hire</span>
-										</div>
-										<div class="border-start ps-4">
-											<span class="text-gray-600 fs-7 d-block">Applications</span>
-											<span class="fw-bold text-gray-900 fs-5">24 Applied</span>
-										</div>
-									</div>
-								</div>
-							</div>
-
-							<div class="border-top pt-6">
-								<a href="#apply-section" class="btn btn-primary btn-lg w-100">
-									<i class="ki-duotone ki-check fs-4 me-2"></i> Apply Now
-								</a>
-							</div>
-						</div>
-					</div>
-					<!--end::Job Header-->
-
-					<!--begin::Job Details Tabs-->
-					<div class="card card-flush mb-8">
-						<div class="card-header">
-							<ul class="nav nav-tabs nav-line-tabs nav-line-tabs-2x border-transparent" role="tablist">
-								<li class="nav-item" role="presentation">
-									<a class="nav-link active" data-bs-toggle="tab" href="#overview-tab" aria-selected="true" role="tab">Overview</a>
-								</li>
-								<li class="nav-item" role="presentation">
-									<a class="nav-link" data-bs-toggle="tab" href="#description-tab" aria-selected="false" role="tab" tabindex="-1">Job Description</a>
-								</li>
-								<li class="nav-item" role="presentation">
-									<a class="nav-link" data-bs-toggle="tab" href="#requirements-tab" aria-selected="false" role="tab" tabindex="-1">Requirements</a>
-								</li>
-								<li class="nav-item" role="presentation">
-									<a class="nav-link" data-bs-toggle="tab" href="#benefits-tab" aria-selected="false" role="tab" tabindex="-1">Benefits</a>
-								</li>
-							</ul>
-						</div>
-
-						<div class="card-body p-8 p-lg-10">
-							<div class="tab-content" id="job-details-tabs">
-								<!--Overview Tab-->
-								<div class="tab-pane fade show active" id="overview-tab" role="tabpanel">
-									<h4 class="fw-bold text-gray-900 mb-4">About This Role</h4>
-									<p class="text-gray-700 fs-6 mb-4">
-										We are seeking an experienced Senior Software Developer to join our growing technology team. You will work on building scalable, high-performance applications serving thousands of users across Australia. This is an exciting opportunity to make a significant impact in a fast-growing company.
-									</p>
-
-									<h5 class="fw-bold text-gray-900 mb-3 mt-6">Key Responsibilities</h5>
-									<ul class="list-unstyled mb-6">
-										<li class="mb-3">
-											<i class="ki-duotone ki-check-circle fs-5 text-success me-3"></i>
-											<span class="text-gray-700">Design and develop robust, scalable software solutions</span>
-										</li>
-										<li class="mb-3">
-											<i class="ki-duotone ki-check-circle fs-5 text-success me-3"></i>
-											<span class="text-gray-700">Lead technical design reviews and architecture discussions</span>
-										</li>
-										<li class="mb-3">
-											<i class="ki-duotone ki-check-circle fs-5 text-success me-3"></i>
-											<span class="text-gray-700">Mentor junior developers and contribute to team growth</span>
-										</li>
-										<li class="mb-3">
-											<i class="ki-duotone ki-check-circle fs-5 text-success me-3"></i>
-											<span class="text-gray-700">Collaborate with product managers and UX designers</span>
-										</li>
-										<li class="mb-3">
-											<i class="ki-duotone ki-check-circle fs-5 text-success me-3"></i>
-											<span class="text-gray-700">Contribute to continuous improvement of development processes</span>
-										</li>
-										<li>
-											<i class="ki-duotone ki-check-circle fs-5 text-success me-3"></i>
-											<span class="text-gray-700">Ensure code quality and maintain best practices</span>
-										</li>
-									</ul>
-
-									<h5 class="fw-bold text-gray-900 mb-3 mt-6">About TechCorp Australia</h5>
-									<p class="text-gray-700 fs-6">
-										TechCorp Australia is a leading technology company specializing in cloud solutions and AI-powered applications. We pride ourselves on innovation, collaborative culture, and commitment to our employees' professional growth. Our team spans across Sydney, Melbourne, and Brisbane with over 500+ skilled professionals.
-									</p>
-								</div>
-
-								<!--Description Tab-->
-								<div class="tab-pane fade" id="description-tab" role="tabpanel">
-									<h4 class="fw-bold text-gray-900 mb-4">Full Job Description</h4>
-									<p class="text-gray-700 fs-6 mb-4">
-										TechCorp is looking for a Senior Software Developer who can drive innovation and excellence. In this role, you'll be responsible for:
-									</p>
-
-									<h5 class="fw-bold text-gray-900 mb-3">Technical Leadership</h5>
-									<p class="text-gray-700 fs-6 mb-4">
-										Lead the technical direction of our core platform products. Work with cross-functional teams to define requirements, propose solutions, and execute on ambitious projects. Your technical expertise will directly influence the future direction of our engineering efforts.
-									</p>
-
-									<h5 class="fw-bold text-gray-900 mb-3">Code Excellence</h5>
-									<p class="text-gray-700 fs-6 mb-4">
-										Maintain high standards of code quality and best practices. Conduct code reviews, establish coding standards, and help the team continuously improve their technical skills. We believe in writing code that is maintainable, tested, and documented.
-									</p>
-
-									<h5 class="fw-bold text-gray-900 mb-3">Mentorship</h5>
-									<p class="text-gray-700 fs-6">
-										Guide and mentor junior developers in your team. Share knowledge, help them grow their skills, and foster a culture of continuous learning and improvement. Your experience will be invaluable to the development of our next generation of engineers.
-									</p>
-								</div>
-
-								<!--Requirements Tab-->
-								<div class="tab-pane fade" id="requirements-tab" role="tabpanel">
-									<h4 class="fw-bold text-gray-900 mb-6">Required Skills & Experience</h4>
-
-									<div class="row g-8">
-										<div class="col-md-6">
-											<h5 class="fw-bold text-gray-900 mb-3">Technical Skills</h5>
-											<ul class="list-unstyled">
-												<li class="mb-3 d-flex">
-													<i class="ki-duotone ki-check-circle fs-5 text-success me-3 flex-shrink-0"></i>
-													<span class="text-gray-700">5+ years of professional software development</span>
-												</li>
-												<li class="mb-3 d-flex">
-													<i class="ki-duotone ki-check-circle fs-5 text-success me-3 flex-shrink-0"></i>
-													<span class="text-gray-700">Strong proficiency in Java, Python, or Go</span>
-												</li>
-												<li class="mb-3 d-flex">
-													<i class="ki-duotone ki-check-circle fs-5 text-success me-3 flex-shrink-0"></i>
-													<span class="text-gray-700">Experience with microservices architecture</span>
-												</li>
-												<li class="mb-3 d-flex">
-													<i class="ki-duotone ki-check-circle fs-5 text-success me-3 flex-shrink-0"></i>
-													<span class="text-gray-700">Knowledge of cloud platforms (AWS, GCP, or Azure)</span>
-												</li>
-												<li class="mb-3 d-flex">
-													<i class="ki-duotone ki-check-circle fs-5 text-success me-3 flex-shrink-0"></i>
-													<span class="text-gray-700">Experience with databases and data modeling</span>
-												</li>
-												<li class="d-flex">
-													<i class="ki-duotone ki-check-circle fs-5 text-success me-3 flex-shrink-0"></i>
-													<span class="text-gray-700">Strong problem-solving and analytical skills</span>
-												</li>
-											</ul>
-										</div>
-
-										<div class="col-md-6">
-											<h5 class="fw-bold text-gray-900 mb-3">Nice to Have</h5>
-											<ul class="list-unstyled">
-												<li class="mb-3 d-flex">
-													<i class="ki-duotone ki-star fs-5 text-warning me-3 flex-shrink-0"></i>
-													<span class="text-gray-700">Experience with Kubernetes</span>
-												</li>
-												<li class="mb-3 d-flex">
-													<i class="ki-duotone ki-star fs-5 text-warning me-3 flex-shrink-0"></i>
-													<span class="text-gray-700">CI/CD pipeline development</span>
-												</li>
-												<li class="mb-3 d-flex">
-													<i class="ki-duotone ki-star fs-5 text-warning me-3 flex-shrink-0"></i>
-													<span class="text-gray-700">ML/AI integration experience</span>
-												</li>
-												<li class="mb-3 d-flex">
-													<i class="ki-duotone ki-star fs-5 text-warning me-3 flex-shrink-0"></i>
-													<span class="text-gray-700">Open source contributions</span>
-												</li>
-												<li class="mb-3 d-flex">
-													<i class="ki-duotone ki-star fs-5 text-warning me-3 flex-shrink-0"></i>
-													<span class="text-gray-700">Technical leadership experience</span>
-												</li>
-												<li class="d-flex">
-													<i class="ki-duotone ki-star fs-5 text-warning me-3 flex-shrink-0"></i>
-													<span class="text-gray-700">Master's degree in Computer Science</span>
-												</li>
-											</ul>
-										</div>
-									</div>
-								</div>
-
-								<!--Benefits Tab-->
-								<div class="tab-pane fade" id="benefits-tab" role="tabpanel">
-									<h4 class="fw-bold text-gray-900 mb-6">What We Offer</h4>
-
-									<div class="row g-8">
-										<div class="col-md-6">
-											<div class="d-flex mb-4">
-												<div class="symbol symbol-50px me-4 flex-shrink-0">
-													<span class="symbol-label bg-light-success rounded">
-														<i class="ki-duotone ki-dollar fs-2x text-success">
-															<span class="path1"></span>
-															<span class="path2"></span>
-														</i>
-													</span>
-												</div>
-												<div>
-													<h6 class="fw-bold text-gray-900 mb-1">Competitive Salary</h6>
-													<p class="text-gray-600 fs-7 mb-0">$150,000 - $200,000 AUD based on experience</p>
-												</div>
-											</div>
-
-											<div class="d-flex mb-4">
-												<div class="symbol symbol-50px me-4 flex-shrink-0">
-													<span class="symbol-label bg-light-primary rounded">
-														<i class="ki-duotone ki-briefcase fs-2x text-primary">
-															<span class="path1"></span>
-															<span class="path2"></span>
-														</i>
-													</span>
-												</div>
-												<div>
-													<h6 class="fw-bold text-gray-900 mb-1">Professional Development</h6>
-													<p class="text-gray-600 fs-7 mb-0">Training budget for courses and conferences</p>
-												</div>
-											</div>
-
-											<div class="d-flex mb-4">
-												<div class="symbol symbol-50px me-4 flex-shrink-0">
-													<span class="symbol-label bg-light-warning rounded">
-														<i class="ki-duotone ki-home fs-2x text-warning">
-															<span class="path1"></span>
-															<span class="path2"></span>
-														</i>
-													</span>
-												</div>
-												<div>
-													<h6 class="fw-bold text-gray-900 mb-1">Remote Work</h6>
-													<p class="text-gray-600 fs-7 mb-0">100% remote with flexible hours</p>
-												</div>
-											</div>
-										</div>
-
-										<div class="col-md-6">
-											<div class="d-flex mb-4">
-												<div class="symbol symbol-50px me-4 flex-shrink-0">
-													<span class="symbol-label bg-light-danger rounded">
-														<i class="ki-duotone ki-heart fs-2x text-danger">
-															<span class="path1"></span>
-															<span class="path2"></span>
-														</i>
-													</span>
-												</div>
-												<div>
-													<h6 class="fw-bold text-gray-900 mb-1">Health & Wellness</h6>
-													<p class="text-gray-600 fs-7 mb-0">Comprehensive health and dental coverage</p>
-												</div>
-											</div>
-
-											<div class="d-flex mb-4">
-												<div class="symbol symbol-50px me-4 flex-shrink-0">
-													<span class="symbol-label bg-light-info rounded">
-														<i class="ki-duotone ki-calendar fs-2x text-info">
-															<span class="path1"></span>
-															<span class="path2"></span>
-														</i>
-													</span>
-												</div>
-												<div>
-													<h6 class="fw-bold text-gray-900 mb-1">Generous Leave</h6>
-													<p class="text-gray-600 fs-7 mb-0">20 days annual leave + 10 days sick leave</p>
-												</div>
-											</div>
-
-											<div class="d-flex">
-												<div class="symbol symbol-50px me-4 flex-shrink-0">
-													<span class="symbol-label bg-light-success rounded">
-														<i class="ki-duotone ki-exit-up fs-2x text-success">
-															<span class="path1"></span>
-															<span class="path2"></span>
-														</i>
-													</span>
-												</div>
-												<div>
-													<h6 class="fw-bold text-gray-900 mb-1">Superannuation</h6>
-													<p class="text-gray-600 fs-7 mb-0">Employer contribution of 11.5% + salary sacrifice</p>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<!--end::Job Details Tabs-->
-
-					<!--begin::Company Info-->
-					<div class="card card-flush">
-						<div class="card-header border-0 pt-6">
-							<h5 class="card-title fw-bold">About the Company</h5>
-						</div>
-						<div class="card-body pt-0">
-							<div class="d-flex align-items-start gap-6 mb-6">
-								<div class="symbol symbol-120px flex-shrink-0">
-									<span class="symbol-label bg-light-primary rounded">
-										<img src="{{ asset('assets/media/svg/brand-logos/techcorp-large.svg') }}" alt="Company Logo" class="w-100 h-100 object-fit-contain">
-									</span>
-								</div>
-
-								<div class="flex-grow-1">
-									<h6 class="fw-bold text-gray-900 mb-2">TechCorp Australia</h6>
-									<p class="text-gray-600 fs-6 mb-4">
-										Founded in 2015, TechCorp Australia has become a leader in cloud computing and AI solutions. We serve over 500 enterprises across Asia-Pacific with our cutting-edge technology platform.
-									</p>
-
-									<div class="row g-4">
-										<div class="col-6">
-											<span class="text-gray-600 fs-7 d-block">Industry</span>
-											<span class="fw-bold text-gray-900">Technology & Software</span>
-										</div>
-										<div class="col-6">
-											<span class="text-gray-600 fs-7 d-block">Company Size</span>
-											<span class="fw-bold text-gray-900">500+ Employees</span>
-										</div>
-										<div class="col-6">
-											<span class="text-gray-600 fs-7 d-block">Founded</span>
-											<span class="fw-bold text-gray-900">2015</span>
-										</div>
-										<div class="col-6">
-											<span class="text-gray-600 fs-7 d-block">Headquarters</span>
-											<span class="fw-bold text-gray-900">Sydney, NSW</span>
-										</div>
-									</div>
-								</div>
-							</div>
-
-							<a href="#" class="btn btn-outline btn-outline-primary">Visit Company Page</a>
-						</div>
-					</div>
-					<!--end::Company Info-->
-				</div>
-				<!--end::Main Content-->
-
-				<!--begin::Sidebar-->
-				<div class="col-lg-4">
-					<!--begin::Apply Card-->
-					<div class="card card-flush mb-8 sticky-top" style="top: 100px;">
-						<div class="card-header border-0 pt-6">
-							<h5 class="card-title fw-bold">Ready to Apply?</h5>
-						</div>
-						<div class="card-body pt-0" id="apply-section">
-							<form id="application-form" method="POST" action="{{ route('jobs.apply', $job['id'] ?? '#') }}" enctype="multipart/form-data">
-								@csrf
-
-								<div class="mb-4">
-									<label class="form-label fw-semibold text-gray-900 mb-2">Full Name</label>
-									<input type="text" name="full_name" class="form-control form-control-solid" placeholder="Your full name" required>
-								</div>
-
-								<div class="mb-4">
-									<label class="form-label fw-semibold text-gray-900 mb-2">Email Address</label>
-									<input type="email" name="email" class="form-control form-control-solid" placeholder="your@email.com" required>
-								</div>
-
-								<div class="mb-4">
-									<label class="form-label fw-semibold text-gray-900 mb-2">Phone Number</label>
-									<input type="tel" name="phone" class="form-control form-control-solid" placeholder="+61 2 XXXX XXXX" required>
-								</div>
-
-								<div class="mb-4">
-									<label class="form-label fw-semibold text-gray-900 mb-2">Upload CV</label>
-									<div class="input-group input-group-solid">
-										<input type="file" name="cv" class="form-control" accept=".pdf,.doc,.docx" required>
-									</div>
-									<small class="text-gray-600">PDF, DOC, or DOCX format. Max 5MB.</small>
-								</div>
-
-								<div class="mb-6">
-									<label class="form-label fw-semibold text-gray-900 mb-2">Cover Letter (Optional)</label>
-									<textarea name="cover_letter" class="form-control form-control-solid" rows="4" placeholder="Tell us why you're a great fit for this role..."></textarea>
-								</div>
-
-								<div class="form-check mb-6">
-									<input type="checkbox" id="privacy-check" class="form-check-input" required>
-									<label class="form-check-label text-gray-700 fs-7" for="privacy-check">
-										I agree to the <a href="#" class="link-primary">privacy policy</a> and <a href="#" class="link-primary">terms of service</a>
-									</label>
-								</div>
-
-								<button type="submit" class="btn btn-primary w-100 mb-3">
-									<i class="ki-duotone ki-check fs-4 me-2"></i> Submit Application
-								</button>
-
-								<button type="button" class="btn btn-light w-100" data-bs-toggle="tooltip" title="Save this job for later">
-									<i class="ki-duotone ki-heart fs-4 me-2"></i> Save Job
-								</button>
-							</form>
-						</div>
-					</div>
-					<!--end::Apply Card-->
-
-					<!--begin::Job Info Card-->
-					<div class="card card-flush mb-8">
-						<div class="card-header border-0 pt-6">
-							<h5 class="card-title fw-bold">Job Information</h5>
-						</div>
-						<div class="card-body pt-0">
-							<div class="mb-4">
-								<span class="text-gray-600 fs-7 d-block mb-1">Job ID</span>
-								<span class="fw-bold text-gray-900">JOB-2024-0521</span>
-							</div>
-							<div class="mb-4">
-								<span class="text-gray-600 fs-7 d-block mb-1">Posted Date</span>
-								<span class="fw-bold text-gray-900">January 15, 2024</span>
-							</div>
-							<div class="mb-4">
-								<span class="text-gray-600 fs-7 d-block mb-1">Application Deadline</span>
-								<span class="fw-bold text-gray-900">February 15, 2024</span>
-							</div>
-							<div class="mb-4">
-								<span class="text-gray-600 fs-7 d-block mb-1">Total Applications</span>
-								<span class="fw-bold text-gray-900">24 candidates</span>
-							</div>
-							<div>
-								<span class="text-gray-600 fs-7 d-block mb-1">Category</span>
-								<span class="badge badge-light-info">Technology</span>
-							</div>
-						</div>
-					</div>
-					<!--end::Job Info Card-->
-
-					<!--begin::Share Card-->
-					<div class="card card-flush">
-						<div class="card-header border-0 pt-6">
-							<h5 class="card-title fw-bold">Share This Job</h5>
-						</div>
-						<div class="card-body pt-0">
-							<div class="d-flex gap-2">
-								<button class="btn btn-icon btn-light-primary flex-grow-1" data-bs-toggle="tooltip" title="Share on LinkedIn">
-									<i class="ki-duotone ki-linkedin fs-5"></i>
-								</button>
-								<button class="btn btn-icon btn-light-primary flex-grow-1" data-bs-toggle="tooltip" title="Share on Twitter">
-									<i class="ki-duotone ki-twitter fs-5"></i>
-								</button>
-								<button class="btn btn-icon btn-light-primary flex-grow-1" data-bs-toggle="tooltip" title="Share via WhatsApp">
-									<i class="ki-duotone ki-whatsapp fs-5"></i>
-								</button>
-								<button class="btn btn-icon btn-light-primary flex-grow-1" data-bs-toggle="tooltip" title="Copy Link">
-									<i class="ki-duotone ki-link fs-5"></i>
-								</button>
-							</div>
-						</div>
-					</div>
-					<!--end::Share Card-->
-				</div>
-				<!--end::Sidebar-->
-			</div>
-
-			<!--begin::Related Jobs-->
-			<div class="mt-15">
-				<h3 class="fw-bold text-gray-900 mb-8">Similar Opportunities</h3>
-
-				<div class="row g-6">
-					@for ($i = 0; $i < 3; $i++)
-						<div class="col-lg-4 col-md-6">
-							<div class="card card-flush h-100">
-								<div class="card-body p-6">
-									<div class="d-flex align-items-start gap-3 mb-3">
-										<div class="symbol symbol-50px flex-shrink-0">
-											<span class="symbol-label bg-light-{{ $i === 0 ? 'primary' : ($i === 1 ? 'success' : 'info') }} rounded">
-												<span class="fw-bold fs-5" style="color: {{ $i === 0 ? '#0AB5D9' : ($i === 1 ? '#20AA3E' : '#5861AC') }};">{{ chr(65 + $i) }}</span>
-											</span>
-										</div>
-
-										<div class="flex-grow-1">
-											<h6 class="text-gray-900 fw-bold fs-7 mb-1">{{ ['Lead Developer', 'Software Engineer', 'Full Stack Developer'][$i] }}</h6>
-											<p class="text-gray-600 fs-7 mb-0">Tech Company Ltd</p>
-										</div>
-									</div>
-
-									<div class="d-flex flex-wrap gap-2 mb-3">
-										<span class="badge badge-light-primary fs-7">Full Time</span>
-										<span class="badge badge-light-success fs-7">Remote</span>
-									</div>
-
-									<p class="text-gray-700 fs-7 mb-4">Build scalable applications with a talented team...</p>
-
-									<div class="d-flex justify-content-between align-items-center">
-										<span class="fw-bold text-success fs-6">$140k - $180k</span>
-										<a href="#" class="btn btn-sm btn-light-primary">View</a>
-									</div>
-								</div>
-							</div>
-						</div>
-					@endfor
-				</div>
-			</div>
-			<!--end::Related Jobs-->
-		</div>
-	</div>
-	<!--end::Content-->
-
-@endsection
-
-@push('scripts')
-<script>
-	document.addEventListener('DOMContentLoaded', function() {
-		// Application form submission
-		const applicationForm = document.getElementById('application-form');
-		if (applicationForm) {
-			applicationForm.addEventListener('submit', function(e) {
-				e.preventDefault();
-
-				// Simulate form submission
-				const submitBtn = applicationForm.querySelector('button[type="submit"]');
-				const originalText = submitBtn.innerHTML;
-				submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span> Submitting...';
-				submitBtn.disabled = true;
-
-				setTimeout(() => {
-					Swal.fire({
-						title: 'Application Submitted',
-						text: 'Thank you for applying. The employer will review your application soon.',
-						icon: 'success',
-						confirmButtonText: 'Back to Jobs'
-					}).then(() => {
-						window.location.href = '{{ route('jobs.index') }}';
-					});
-				}, 1500);
-			});
-		}
-
-		// Save job functionality
-		const saveJobBtn = applicationForm?.querySelector('button[data-bs-toggle="tooltip"][title*="Save"]');
-		if (saveJobBtn) {
-			saveJobBtn.addEventListener('click', function(e) {
-				e.preventDefault();
-				const icon = this.querySelector('i');
-				icon.classList.toggle('ki-heart');
-				icon.classList.toggle('ki-heart-filled');
-				icon.classList.toggle('text-danger');
-			});
-		}
-
-		// Initialize tooltips
-		const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
-		tooltipTriggerList.map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
-	});
-</script>
-@endpush
+@section('title', ($job->title ?? 'Job Details') . ' at ' . ($job->company_name ?? 'Company') . ' | JobMatch')
+@section('meta_description', 'Apply for ' . ($job->title ?? 'this role') . ' at ' . ($job->company_name ?? 'a leading Australian employer') . '. Easy Apply, AI CV match score, and WhatsApp updates.')
 
 @push('styles')
 <style>
-	.sticky-top {
-		position: sticky;
-		top: 100px;
+	:root{
+		--jp-navy: #0B1C2E;
+		--jp-green: #20AA3E;
+		--jp-teal: #03A588;
+		--jp-gradient: linear-gradient(135deg, #20AA3E 0%, #03A588 100%);
+		--jp-ink: #0F1B2D;
+		--jp-muted: #64748B;
+		--jp-bg-soft: #F4F8F7;
+		--jp-line: rgba(15,27,45,0.08);
 	}
 
-	.list-unstyled li {
-		line-height: 1.7;
-	}
+	.jp-job-head{ background: radial-gradient(120% 160% at 10% 0%, #16304A 0%, var(--jp-navy) 60%, #081420 100%); }
+	.jp-logo-lg{ width:76px; height:76px; border-radius:16px; background:#fff; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:24px; color:var(--jp-teal); box-shadow:0 10px 26px rgba(0,0,0,0.25); }
+	.jp-job-head h1{ color:#fff; font-weight:800; font-size:1.85rem; }
+	.jp-job-head .company{ color:#BFE9D9; font-weight:700; }
+	.jp-job-head .meta{ color:#B9C6D6; }
+	.jp-pill-dark{ background:rgba(255,255,255,0.08); color:#fff; border:1px solid rgba(255,255,255,0.14); font-size:12px; font-weight:700; padding:5px 12px; border-radius:20px; }
+	.jp-salary-lg{ color:#5EE29B; font-weight:800; font-size:1.15rem; }
 
-	.form-control:focus, .form-select:focus {
-		border-color: #20AA3E;
-		box-shadow: 0 0 0 0.2rem rgba(32, 170, 62, 0.15);
-	}
+	.jp-card{ background:#fff; border:1px solid var(--jp-line); border-radius:16px; padding:26px; }
+	.jp-card h5{ font-weight:800; color:var(--jp-ink); }
+	.jp-card ul.spec-list{ list-style:none; padding:0; margin:0; }
+	.jp-card ul.spec-list li{ display:flex; gap:10px; padding:8px 0; color:#33475B; font-size:.95rem; }
+	.jp-card ul.spec-list li i{ color:var(--jp-teal); margin-top:3px; }
 
-	.nav-tabs .nav-link.active {
-		border-bottom-color: #20AA3E;
-		color: #20AA3E;
-	}
+	.jp-apply-card{ background:linear-gradient(180deg, var(--jp-navy) 0%, #13273D 100%); color:#fff; border-radius:16px; padding:26px; position:sticky; top:24px; }
+	.jp-apply-card .btn-apply{ background:var(--jp-gradient); border:none; color:#fff; font-weight:700; border-radius:10px; padding:13px; }
+	.jp-apply-card .btn-wa{ background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.16); color:#fff; font-weight:700; border-radius:10px; padding:12px; }
+	.jp-apply-card .match{ background:rgba(94,226,155,0.12); border:1px solid rgba(94,226,155,0.3); border-radius:12px; padding:14px; }
 
-	@media (max-width: 768px) {
-		.sticky-top {
-			position: static;
-			top: auto;
-		}
-	}
+	.jp-step{ display:flex; gap:14px; padding:16px 0; border-bottom:1px solid var(--jp-line); }
+	.jp-step:last-child{ border-bottom:none; }
+	.jp-step .num{ width:30px; height:30px; border-radius:50%; background:var(--jp-bg-soft); color:var(--jp-teal); font-weight:800; display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:.85rem; }
+
+	.jp-company-card .logo{ width:56px; height:56px; border-radius:12px; background:var(--jp-bg-soft); display:flex; align-items:center; justify-content:center; font-weight:800; color:var(--jp-teal); }
+
+	.jp-similar-item{ display:flex; gap:12px; padding:14px; border:1px solid var(--jp-line); border-radius:12px; transition:.2s; }
+	.jp-similar-item:hover{ border-color:var(--jp-teal); background:var(--jp-bg-soft); }
+	.jp-similar-item .logo-sm{ width:40px; height:40px; border-radius:10px; background:#fff; display:flex; align-items:center; justify-content:center; font-weight:800; color:var(--jp-teal); flex-shrink:0; }
 </style>
 @endpush
+
+@section('content')
+
+<!-- ====================== JOB HEADER ====================== -->
+<div class="jp-job-head py-10 py-lg-14">
+	<div class="container">
+		<nav class="mb-6">
+			<a href="{{ route('jobs.index') }}" class="text-white opacity-50 text-hover-primary fs-8 fw-semibold"><i class="ki-duotone ki-arrow-left fs-7 me-1"></i>Back to jobs</a>
+		</nav>
+		<div class="d-flex flex-column flex-lg-row gap-6 align-items-lg-center justify-content-between">
+			<div class="d-flex gap-5 align-items-center">
+				<div class="jp-logo-lg">{{ strtoupper(substr($job->company_name ?? 'JM', 0, 2)) }}</div>
+				<div>
+					<h1 class="mb-1">{{ $job->title ?? 'Senior Warehouse Supervisor' }}</h1>
+					<div class="company fs-5">{{ $job->company_name ?? 'Coles Group' }}</div>
+					<div class="meta fs-7 mt-2 d-flex flex-wrap gap-4">
+						<span><i class="ki-duotone ki-geolocation fs-6 me-1"><span class="path1"></span><span class="path2"></span></i>{{ $job->location ?? 'Western Sydney, NSW' }}</span>
+						<span><i class="ki-duotone ki-calendar fs-6 me-1"><span class="path1"></span><span class="path2"></span></i>Posted {{ $job->posted_at ?? '2 days ago' }}</span>
+						<span><i class="ki-duotone ki-eye fs-6 me-1"><span class="path1"></span><span class="path2"></span></i>{{ $job->views ?? 214 }} views</span>
+					</div>
+				</div>
+			</div>
+			<div class="text-lg-end">
+				<div class="jp-salary-lg mb-2">{{ $job->salary ?? '$34 – $38 / hour' }}</div>
+				<div class="d-flex gap-2 flex-wrap justify-content-lg-end">
+					<span class="jp-pill-dark">{{ $job->job_type ?? 'Full-time' }}</span>
+					<span class="jp-pill-dark">{{ $job->category ?? 'Logistics & Warehouse' }}</span>
+					<span class="jp-pill-dark">{{ $job->setting ?? 'On-site' }}</span>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="container py-12 py-lg-16">
+	<div class="row g-6 g-lg-10">
+
+		<!-- ====================== MAIN CONTENT ====================== -->
+		<div class="col-lg-8">
+
+			<div class="jp-card mb-6">
+				<h5 class="mb-4">Overview</h5>
+				<p class="text-gray-700 fs-6 lh-lg mb-0">
+					{{ $job->description ?? 'We\'re looking for an experienced Warehouse Supervisor to lead a team of 15 across our Western Sydney distribution centre. You\'ll oversee daily operations, safety compliance, and shift scheduling while working closely with logistics and inventory teams to keep our supply chain moving.' }}
+				</p>
+			</div>
+
+			<div class="jp-card mb-6">
+				<h5 class="mb-4">Responsibilities</h5>
+				<ul class="spec-list">
+					@forelse(($job->responsibilities ?? []) as $item)
+					<li><i class="ki-duotone ki-check fs-4"></i>{{ $item }}</li>
+					@empty
+					<li><i class="ki-duotone ki-check fs-4"></i>Supervise daily warehouse operations and shift rosters</li>
+					<li><i class="ki-duotone ki-check fs-4"></i>Ensure compliance with WHS and site safety standards</li>
+					<li><i class="ki-duotone ki-check fs-4"></i>Coordinate with logistics on inbound and outbound stock</li>
+					<li><i class="ki-duotone ki-check fs-4"></i>Train, mentor and manage performance of warehouse staff</li>
+					@endforelse
+				</ul>
+			</div>
+
+			<div class="jp-card mb-6">
+				<h5 class="mb-4">Requirements</h5>
+				<ul class="spec-list">
+					@forelse(($job->requirements ?? []) as $item)
+					<li><i class="ki-duotone ki-check fs-4"></i>{{ $item }}</li>
+					@empty
+					<li><i class="ki-duotone ki-check fs-4"></i>3+ years' experience in a warehouse supervisory role</li>
+					<li><i class="ki-duotone ki-check fs-4"></i>Current forklift licence (LF) required</li>
+					<li><i class="ki-duotone ki-check fs-4"></i>Strong understanding of WHS regulations</li>
+					<li><i class="ki-duotone ki-check fs-4"></i>Available for rotating shifts including weekends</li>
+					@endforelse
+				</ul>
+			</div>
+
+			<div class="jp-card mb-6">
+				<h5 class="mb-4">Benefits</h5>
+				<ul class="spec-list">
+					@forelse(($job->benefits ?? []) as $item)
+					<li><i class="ki-duotone ki-check fs-4"></i>{{ $item }}</li>
+					@empty
+					<li><i class="ki-duotone ki-check fs-4"></i>Above-award hourly rate plus penalty rates</li>
+					<li><i class="ki-duotone ki-check fs-4"></i>Career progression across a national network</li>
+					<li><i class="ki-duotone ki-check fs-4"></i>Staff discounts and wellbeing program</li>
+					@endforelse
+				</ul>
+			</div>
+
+			<div class="jp-card">
+				<h5 class="mb-2">How to apply</h5>
+				<p class="text-muted fs-7 mb-0">Three quick steps — most candidates finish in under two minutes.</p>
+				<div class="mt-4">
+					<div class="jp-step">
+						<div class="num">1</div>
+						<div>
+							<div class="fw-bold">Confirm your CV</div>
+							<div class="text-muted fs-7">Use your saved profile CV, or upload a new one for this application.</div>
+						</div>
+					</div>
+					<div class="jp-step">
+						<div class="num">2</div>
+						<div>
+							<div class="fw-bold">Add a cover note (optional)</div>
+							<div class="text-muted fs-7">Write your own, or let AI draft one from your profile in seconds.</div>
+						</div>
+					</div>
+					<div class="jp-step">
+						<div class="num">3</div>
+						<div>
+							<div class="fw-bold">Submit and track</div>
+							<div class="text-muted fs-7">We'll confirm by email and send status updates to WhatsApp.</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+		<!-- ====================== SIDEBAR ====================== -->
+		<div class="col-lg-4">
+
+			<div class="jp-apply-card mb-6">
+				<div class="match mb-5">
+					<div class="d-flex align-items-center gap-2 mb-1">
+						<i class="ki-duotone ki-verify fs-3" style="color:#5EE29B;"><span class="path1"></span><span class="path2"></span></i>
+						<span class="fw-bold fs-6">{{ $job->match_score ?? 92 }}% match to your profile</span>
+					</div>
+					<div class="fs-8 opacity-75">Based on your saved CV and preferences</div>
+				</div>
+				<button type="button" class="btn btn-apply w-100 mb-3">
+					<i class="ki-duotone ki-flash fs-4 me-1"><span class="path1"></span><span class="path2"></span></i> Easy Apply
+				</button>
+				<button type="button" class="btn btn-wa w-100 mb-5">
+					<i class="ki-duotone ki-message-text-2 fs-4 me-1"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i> Apply via WhatsApp
+				</button>
+				<div class="d-flex justify-content-between fs-8 opacity-75 border-top pt-4" style="border-color:rgba(255,255,255,0.1) !important;">
+					<span><i class="ki-duotone ki-people fs-6 me-1"><span class="path1"></span><span class="path2"></span></i>{{ $job->applicants ?? 47 }} applied</span>
+					<button type="button" class="btn btn-sm btn-link text-white opacity-75 p-0"><i class="ki-duotone ki-heart fs-6 me-1"><span class="path1"></span><span class="path2"></span></i>Save</button>
+				</div>
+			</div>
+
+			<div class="jp-card jp-company-card mb-6">
+				<div class="d-flex align-items-center gap-4 mb-4">
+					<div class="logo">{{ strtoupper(substr($job->company_name ?? 'JM', 0, 2)) }}</div>
+					<div>
+						<div class="fw-bold">{{ $job->company_name ?? 'Coles Group' }}</div>
+						<div class="text-muted fs-8">{{ $job->company_industry ?? 'Retail & Logistics' }}</div>
+					</div>
+				</div>
+				<p class="text-muted fs-7 mb-4">{{ $job->company_about ?? 'One of Australia\'s largest retail and logistics employers, with distribution centres in every state.' }}</p>
+				<a href="#" class="btn btn-sm btn-outline btn-outline-primary w-100">View Company Profile</a>
+			</div>
+
+			<div class="jp-card">
+				<h5 class="mb-4 fs-6">Similar jobs</h5>
+				<div class="d-flex flex-column gap-3">
+					@forelse(($similarJobs ?? []) as $sj)
+					<a href="{{ route('jobs.show', $sj->slug ?? $sj->id) }}" class="jp-similar-item text-decoration-none">
+						<div class="logo-sm">{{ strtoupper(substr($sj->company_name ?? 'JM', 0, 2)) }}</div>
+						<div>
+							<div class="fw-bold fs-7 text-gray-900">{{ $sj->title ?? 'Job Title' }}</div>
+							<div class="text-muted fs-8">{{ $sj->company_name ?? 'Company' }} · {{ $sj->location ?? 'Location' }}</div>
+						</div>
+					</a>
+					@empty
+					@foreach(['Dispatch Coordinator','Forklift Operator','Logistics Team Leader'] as $i => $t)
+					<a href="{{ route('jobs.index') }}" class="jp-similar-item text-decoration-none">
+						<div class="logo-sm">{{ ['DX','FO','LT'][$i] }}</div>
+						<div>
+							<div class="fw-bold fs-7 text-gray-900">{{ $t }}</div>
+							<div class="text-muted fs-8">{{ ['Coles Group','Linfox','Toll Group'][$i] }} · {{ ['Sydney','Brisbane','Melbourne'][$i] }}</div>
+						</div>
+					</a>
+					@endforeach
+					@endforelse
+				</div>
+			</div>
+
+		</div>
+	</div>
+</div>
+
+@endsection

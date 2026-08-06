@@ -123,4 +123,20 @@ return [
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
 
+
+    // In config/app.php, add at the bottom
+    'main_app_url' => env('MAIN_APP_URL', 'http://127.0.0.1:8000'),
+    'main_app_api_key' => env('MAIN_APP_API_KEY'),
+    'country_code' => env('COUNTRY_CODE', 'AU'),
+    'country_name' => env('COUNTRY_NAME', 'Australia'),
+    'country_flag' => env('COUNTRY_FLAG', '🌍'),
+    'country_currency' => env('COUNTRY_CURRENCY', 'USD'),
+    'country_currency_symbol' => env('COUNTRY_CURRENCY_SYMBOL', '$'),
+    'country_timezone' => env('COUNTRY_TIMEZONE', 'UTC'),
+    'country_phone_code' => env('COUNTRY_PHONE_CODE', ''),
+    'country_region' => env('COUNTRY_REGION', ''),
+    'country_capital' => env('COUNTRY_CAPITAL', ''),
+    'country_citizens' => env('COUNTRY_CITIZENS', ''),
+    'country_domain' => env('COUNTRY_DOMAIN', ''),
+
 ];
