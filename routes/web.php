@@ -9,7 +9,7 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 
 
 
-use App\Http\Controllers\Jobs\{ JobsController, CompaniesController };
+use App\Http\Controllers\Jobs\{ JobsController, CompaniesController, CategoryController, LocationController };
 // Jobs listing
 Route::get('/jobs', [JobsController::class, 'jobs'])->name('jobs.index');
 // Job detail
@@ -22,6 +22,9 @@ Route::post('/jobs/{id}/track-application', [JobsController::class, 'trackApplic
 Route::get('/employers', [CompaniesController::class, 'companies'])->name('companies.index');
 // Company detail
 Route::get('/employers/newest-jobs/{id}', [CompaniesController::class, 'show'])->name('companies.show');
+Route::get('/employers/newest-jobs/job-categories/newest-jobs/{id}', [CategoryController::class, 'show'])->name('categories.show');
+
+Route::get('/jobs/location/{slug}', [LocationController::class, 'show'])->name('locations.show');
 
 
 
