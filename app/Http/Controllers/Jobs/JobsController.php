@@ -69,4 +69,37 @@ class JobsController extends Controller
 
         return view('jobs.show', compact('job', 'country'));
     }
+
+    /**
+     * Record that the apply modal was opened for a job. Called from JS the
+     * moment #applyModal fires 'show.bs.modal' - see jobs/show.blade.php.
+     *
+     * This is the browser's same-origin target (it proxies to the main app
+     * via CountryService, which is where the Authorization header and API
+     * key live) - the browser never talks to the main app directly.
+     *
+     * Session-based de-dupe: reopening the modal, or refreshing the page and
+     * clicking Apply again, does not inflate application_count repeatedly
+     * within the same session - only the first open per job per session counts.
+     */
+    public function trackApplication(Request $request, $id)
+    {
+        // \Log::info($id);
+        $sessionKey = 'applied_job_' . $id;
+ 
+        if ($request->session()->has($sessionKey)) {
+            return response()->json(['success' => true, 'already_recorded' => true]);
+        }
+ 
+        $result = $this->countryService->api("jobs/{$id}/track-application", [], 'POST');
+ 
+        $request->session()->put($sessionKey, true);
+ 
+        return response()->json([
+            'success' => true,
+            'already_recorded' => false,
+            'data' => $result,
+        ]);
+    }
+
 }

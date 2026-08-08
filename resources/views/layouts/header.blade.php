@@ -34,22 +34,180 @@
 
 								<!--begin::Menu item-->
 								<div class="menu-item">
-									<a class="menu-link nav-link active py-3 px-4 px-xxl-6" href="#home" data-kt-scroll-toggle="true" data-kt-drawer-dismiss="true">Home</a>
+									<a class="menu-link nav-link py-3 px-4 px-xxl-6 {{ Route::is('home') ? 'active' : '' }}" href="{{ route('home') }}" data-kt-scroll-toggle="true" data-kt-drawer-dismiss="true">Home</a>
 								</div>
 								<!--end::Menu item-->
 
 								<!--begin::Menu item-->
 								<div class="menu-item">
-									<a class="menu-link nav-link py-3 px-4 px-xxl-6" href="{{ route('jobs.index') }}" data-kt-scroll-toggle="true" data-kt-drawer-dismiss="true">Jobs</a>
+									<a class="menu-link nav-link py-3 px-4 px-xxl-6 {{ Route::is('jobs.index','jobs.show') ? 'active' : '' }}" href="{{ route('jobs.index') }}" data-kt-scroll-toggle="true" data-kt-drawer-dismiss="true">Jobs</a>
 								</div>
 								<!--end::Menu item-->
 
 								<!--begin::Menu item-->
 								<div class="menu-item">
-									<a class="menu-link nav-link py-3 px-4 px-xxl-6" href="#features" data-kt-scroll-toggle="true" data-kt-drawer-dismiss="true">Features</a>
+									<a class="menu-link nav-link py-3 px-4 px-xxl-6 {{ Route::is('companies.index','companies.show') ? 'active' : '' }}" href="{{ route('companies.index') }}" data-kt-scroll-toggle="true" data-kt-drawer-dismiss="true">Companies</a>
 								</div>
 								<!--end::Menu item-->
 
+								<!--begin::Menu item - Categories-->
+								<div class="menu-item jp-nav-categories">
+									<!-- Desktop: hover-based dropdown -->
+									<div class="jp-nav-categories-desktop">
+										<span class="menu-link nav-link py-3 px-4 px-xxl-6 d-flex align-items-center gap-1 {{ Route::is('categories.show') ? 'active' : '' }}" style="cursor: pointer;">
+											<i class="ki-duotone ki-folder fs-4 text-warning">
+												<span class="path1"></span>
+												<span class="path2"></span>
+											</i>
+											Categories
+											<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+												<path d="M6 9l6 6 6-6"/>
+											</svg>
+										</span>
+										<div class="jp-nav-categories-panel">
+											@forelse($navCategories ?? [] as $category)
+												@php
+													$catId = is_array($category) ? $category['slug'] : $category->slug;
+													$catName = is_array($category) ? $category['name'] : $category->name;
+													$jobCount = is_array($category) ? ($category['jobs_count'] ?? 0) : 0;
+													$icon = is_array($category) ? ($category['icon'] ?? 'bi-briefcase') : ($category->icon ?? 'bi-briefcase');
+												@endphp
+												<a href="{{ route('categories.show', $catId) }}" data-kt-drawer-dismiss="true">
+													<span class="d-flex align-items-center gap-2">
+														<i class="ki-duotone ki-folder fs-4 text-warning">
+															<span class="path1"></span>
+															<span class="path2"></span>
+														</i>
+														{{ $catName }}
+													</span>
+													@if($jobCount > 0)
+														<span class="badge bg-light-primary text-primary rounded-pill">{{ $jobCount }}</span>
+													@endif
+												</a>
+											@empty
+												<span class="jp-nav-categories-empty">No categories available</span>
+											@endforelse
+										</div>
+									</div>
+
+									<!-- Mobile: details-based dropdown -->
+									<details class="jp-nav-categories-mobile">
+										<summary class="menu-link nav-link py-3 px-4 px-xxl-6 d-flex align-items-center gap-1 {{ Route::is('categories.show') ? 'active' : '' }}" style="cursor: pointer;">
+											<i class="ki-duotone ki-folder fs-3 me-1">
+												<span class="path1"></span>
+												<span class="path2"></span>
+											</i>
+											Categories
+											<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+												<path d="M6 9l6 6 6-6"/>
+											</svg>
+										</summary>
+										<div class="jp-nav-categories-panel">
+											@forelse($navCategories ?? [] as $category)
+												@php
+													$catId = is_array($category) ? $category['slug'] : $category->slug;
+													$catName = is_array($category) ? $category['name'] : $category->name;
+													$jobCount = is_array($category) ? ($category['jobs_count'] ?? 0) : 0;
+													$icon = is_array($category) ? ($category['icon'] ?? 'bi-briefcase') : ($category->icon ?? 'bi-briefcase');
+												@endphp
+												<a href="{{ route('categories.show', $catId) }}" data-kt-drawer-dismiss="true">
+													<span class="d-flex align-items-center gap-2">
+														<i class="ki-duotone ki-folder fs-4 text-warning">
+															<span class="path1"></span>
+															<span class="path2"></span>
+														</i>
+														{{ $catName }}
+													</span>
+													@if($jobCount > 0)
+														<span class="badge bg-light-primary text-primary rounded-pill">{{ $jobCount }}</span>
+													@endif
+												</a>
+											@empty
+												<span class="jp-nav-categories-empty">No categories available</span>
+											@endforelse
+										</div>
+									</details>
+								</div>
+								<!--end::Menu item - Categories-->
+
+								<!--begin::Menu item - Locations-->
+								<div class="menu-item jp-nav-locations">
+									<!-- Desktop: hover-based dropdown -->
+									<div class="jp-nav-locations-desktop">
+										<span class="menu-link nav-link py-3 px-4 px-xxl-6 d-flex align-items-center gap-1 {{ Route::is('locations.show') ? 'active' : '' }}" style="cursor: pointer;">
+											<i class="ki-duotone ki-geolocation fs-3 me-1">
+												<span class="path1"></span>
+												<span class="path2"></span>
+											</i>
+											Locations
+											<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+												<path d="M6 9l6 6 6-6"/>
+											</svg>
+										</span>
+										<div class="jp-nav-locations-panel">
+											@forelse($navLocations ?? [] as $location)
+												@php
+													$locSlug = is_array($location) ? ($location['slug'] ?? strtolower(str_replace(' ', '-', $location['district'] ?? ''))) : $location->slug;
+													$locName = is_array($location) ? ($location['display_name'] ?? $location['district'] ?? '') : $location->district;
+													$jobCount = is_array($location) ? ($location['jobs_count'] ?? 0) : 0;
+												@endphp
+												<a href="{{ route('locations.show', $locSlug) }}" data-kt-drawer-dismiss="true">
+													<span class="d-flex align-items-center gap-2">
+														<i class="ki-duotone ki-geolocation fs-4 text-teal">
+															<span class="path1"></span>
+															<span class="path2"></span>
+														</i>
+														{{ $locName }}
+													</span>
+													@if($jobCount > 0)
+														<span class="badge bg-light-primary text-primary rounded-pill">{{ $jobCount }}</span>
+													@endif
+												</a>
+											@empty
+												<span class="jp-nav-locations-empty">No locations available</span>
+											@endforelse
+										</div>
+									</div>
+
+									<!-- Mobile: details-based dropdown -->
+									<details class="jp-nav-locations-mobile">
+										<summary class="menu-link nav-link py-3 px-4 px-xxl-6 d-flex align-items-center gap-1 {{ Route::is('locations.show') ? 'active' : '' }}" style="cursor: pointer;">
+											<i class="ki-duotone ki-geolocation fs-3 me-1">
+												<span class="path1"></span>
+												<span class="path2"></span>
+											</i>
+											Locations
+											<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+												<path d="M6 9l6 6 6-6"/>
+											</svg>
+										</summary>
+										<div class="jp-nav-locations-panel">
+											@forelse($navLocations ?? [] as $location)
+												@php
+													$locSlug = is_array($location) ? ($location['slug'] ?? strtolower(str_replace(' ', '-', $location['district'] ?? ''))) : $location->slug;
+													$locName = is_array($location) ? ($location['display_name'] ?? $location['district'] ?? '') : $location->district;
+													$jobCount = is_array($location) ? ($location['jobs_count'] ?? 0) : 0;
+												@endphp
+												<a href="{{ route('locations.show', $locSlug) }}" data-kt-drawer-dismiss="true">
+													<span class="d-flex align-items-center gap-2">
+														<i class="ki-duotone ki-geolocation fs-4 text-teal">
+															<span class="path1"></span>
+															<span class="path2"></span>
+														</i>
+														{{ $locName }}
+													</span>
+													@if($jobCount > 0)
+														<span class="badge bg-light-primary text-primary rounded-pill">{{ $jobCount }}</span>
+													@endif
+												</a>
+											@empty
+												<span class="jp-nav-locations-empty">No locations available</span>
+											@endforelse
+										</div>
+									</details>
+								</div>
+								<!--end::Menu item - Locations-->
+								
 								<!--begin::Menu item-->
 								<div class="menu-item">
 									<a class="menu-link nav-link py-3 px-4 px-xxl-6" href="#benefits" data-kt-scroll-toggle="true" data-kt-drawer-dismiss="true">Why Us</a>

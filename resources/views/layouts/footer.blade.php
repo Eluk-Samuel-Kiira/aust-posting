@@ -1,160 +1,82 @@
+
+
+{{--
+	NO @push('styles') HERE ON PURPOSE.
+	This file is loaded via @include() inside <body>, but @stack('styles') sits
+	in <head> and renders BEFORE <body>. Any @push('styles') from an @include'd
+	partial fires too late to ever reach the stack - that's the actual reason
+	the footer stayed white through every previous attempt, not caching.
+	(This is different from a page's own @push at the top of a file that
+	@extends the layout - that one runs during the child-template pass, which
+	completes before the parent layout's @stack renders, so it works fine.)
+	Fix: every color/background here is an inline style="" attribute instead,
+	which always renders regardless of push/stack timing.
+--}}
+
 <!--begin::Footer Section-->
-<div class="mb-0">
-	<!--begin::Curve top-->
-	<div class="landing-curve landing-dark-color">
-		<svg viewBox="15 -1 1470 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-			<path d="M1 48C4.93573 47.6644 8.85984 47.3311 12.7725 47H1489.16C1493.1 47.3311 1497.04 47.6644 1501 48V47H1489.16C914.668 -1.34764 587.282 -1.61174 12.7725 47H1V48Z" fill="currentColor"></path>
-		</svg>
-	</div>
-	<!--end::Curve top-->
-
-	<!--begin::Wrapper-->
-	<div class="landing-dark-bg pt-20">
-		<!--begin::Container-->
-		<div class="container">
-			<!--begin::Row-->
-			<div class="row py-10 py-lg-20">
-				<!--begin::Col-->
-				<div class="col-lg-6 pe-lg-16 mb-10 mb-lg-0">
-					<!--begin::Block-->
-					<div class="rounded landing-dark-border p-9 mb-10">
-						<!--begin::Title-->
-						<h2 class="text-white">Need a Custom Plan?</h2>
-						<!--end::Title-->
-						<!--begin::Text-->
-						<span class="fw-normal fs-4 text-gray-700">
-							Email us at 
-							<a href="mailto:support@jobmatch.com.au" class="text-white opacity-50 text-hover-primary">support@jobmatch.com.au</a>
-							or call <span class="text-white opacity-75">1300 JOB AU</span>
-						</span>
-						<!--end::Text-->
-					</div>
-					<!--end::Block-->
-
-					<!--begin::Block-->
-					<div class="rounded landing-dark-border p-9">
-						<!--begin::Title-->
-						<h2 class="text-white">WhatsApp Support</h2>
-						<!--end::Title-->
-						<!--begin::Text-->
-						<span class="fw-normal fs-4 text-gray-700">
-							Chat with our team directly. 
-							<a href="https://wa.me/61412345678" target="_blank" class="text-white opacity-50 text-hover-primary">Open WhatsApp</a>
-						</span>
-						<!--end::Text-->
-					</div>
-					<!--end::Block-->
+<div style="background: linear-gradient(180deg, #13273D 0%, #0B1C2E 100%); padding-top: 90px;">
+	<div class="container">
+		<div class="row py-10 py-lg-14">
+			<div class="col-lg-6 pe-lg-16 mb-8 mb-lg-0">
+				<div class="rounded-3 mb-5" style="border:1px solid rgba(255,255,255,0.1); background:rgba(255,255,255,0.03); padding:22px 24px;">
+					<h3 style="color:#fff; font-weight:800; font-size:1.15rem; margin-bottom:6px;">Need a Custom Plan?</h3>
+					<p style="color:#AFC0D2; font-size:.9rem; margin-bottom:0;">
+						Email us at
+						<a href="mailto:support@jobmatch.com.au" style="color:#7CF0C2; text-decoration:none; font-weight:700;">support@jobmatch.com.au</a>
+						or call <span style="color:#fff;">1300 JOB AU</span>
+					</p>
 				</div>
-				<!--end::Col-->
 
-				<!--begin::Col-->
-				<div class="col-lg-6 ps-lg-16">
-					<!--begin::Navs-->
-					<div class="d-flex justify-content-center">
-						<!--begin::Links-->
-						<div class="d-flex fw-semibold flex-column me-20">
-							<!--begin::Subtitle-->
-							<h4 class="fw-bold text-gray-500 mb-6">Product</h4>
-							<!--end::Subtitle-->
-
-							<!--begin::Link-->
-							<a href="{{ route('home') }}" class="text-white opacity-50 text-hover-primary fs-5 mb-6">Features</a>
-							<!--end::Link-->
-
-							<!--begin::Link-->
-							<a href="{{ route('home') }}" class="text-white opacity-50 text-hover-primary fs-5 mb-6">Pricing</a>
-							<!--end::Link-->
-
-							<!--begin::Link-->
-							<a href="{{ route('home') }}" class="text-white opacity-50 text-hover-primary fs-5 mb-6">Services</a>
-							<!--end::Link-->
-
-							<!--begin::Link-->
-							<a href="{{ route('home') }}" class="text-white opacity-50 text-hover-primary fs-5 mb-6">Documentation</a>
-							<!--end::Link-->
-
-							<!--begin::Link-->
-							<a href="{{ route('home') }}" class="text-white opacity-50 text-hover-primary fs-5 mb-6">Blog</a>
-							<!--end::Link-->
-						</div>
-						<!--end::Links-->
-
-						<!--begin::Links-->
-						<div class="d-flex fw-semibold flex-column ms-lg-20">
-							<!--begin::Subtitle-->
-							<h4 class="fw-bold text-gray-500 mb-6">Company</h4>
-							<!--end::Subtitle-->
-
-							<!--begin::Link-->
-							<a href="{{ route('home') }}" class="text-white opacity-50 text-hover-primary fs-5 mb-6">About</a>
-							<!--end::Link-->
-
-							<!--begin::Link-->
-							<a href="{{ route('home') }}" class="text-white opacity-50 text-hover-primary fs-5 mb-6">Careers</a>
-							<!--end::Link-->
-
-							<!--begin::Link-->
-							<a href="{{ route('home') }}" class="text-white opacity-50 text-hover-primary fs-5 mb-6">Contact</a>
-							<!--end::Link-->
-
-							<!--begin::Link-->
-							<a href="{{ route('home') }}" class="text-white opacity-50 text-hover-primary fs-5 mb-6">Privacy Policy</a>
-							<!--end::Link-->
-
-							<!--begin::Link-->
-							<a href="{{ route('home') }}" class="text-white opacity-50 text-hover-primary fs-5">Terms & Conditions</a>
-							<!--end::Link-->
-						</div>
-						<!--end::Links-->
-					</div>
-					<!--end::Navs-->
+				<div class="rounded-3" style="border:1px solid rgba(255,255,255,0.1); background:rgba(255,255,255,0.03); padding:22px 24px;">
+					<h3 style="color:#fff; font-weight:800; font-size:1.15rem; margin-bottom:6px;">WhatsApp Support</h3>
+					<p style="color:#AFC0D2; font-size:.9rem; margin-bottom:0;">
+						Chat with our team directly.
+						<a href="https://wa.me/61412345678" target="_blank" rel="noopener noreferrer" style="color:#7CF0C2; text-decoration:none; font-weight:700;">Open WhatsApp</a>
+					</p>
 				</div>
-				<!--end::Col-->
 			</div>
-			<!--end::Row-->
-		</div>
-		<!--end::Container-->
 
-		<!--begin::Separator-->
-		<div class="landing-dark-separator"></div>
-		<!--end::Separator-->
+			<div class="col-lg-6 ps-lg-16">
+				<div class="row g-6">
+					<div class="col-6">
+						<h4 style="color:#fff; opacity:.55; font-weight:800; font-size:.82rem; letter-spacing:.04em; text-transform:uppercase; margin-bottom:16px;">Product</h4>
+						<a href="{{ route('home') }}" style="color:#AFC0D2; text-decoration:none; font-size:.9rem; display:block; margin-bottom:12px;">Features</a>
+						<a href="{{ route('home') }}" style="color:#AFC0D2; text-decoration:none; font-size:.9rem; display:block; margin-bottom:12px;">Pricing</a>
+						<a href="{{ route('home') }}" style="color:#AFC0D2; text-decoration:none; font-size:.9rem; display:block; margin-bottom:12px;">Services</a>
+						<a href="{{ route('home') }}" style="color:#AFC0D2; text-decoration:none; font-size:.9rem; display:block; margin-bottom:12px;">Documentation</a>
+						<a href="{{ route('home') }}" style="color:#AFC0D2; text-decoration:none; font-size:.9rem; display:block;">Blog</a>
+					</div>
 
-		<!--begin::Container-->
-		<div class="container">
-			<!--begin::Wrapper-->
-			<div class="d-flex flex-column flex-md-row flex-stack py-7 py-lg-10">
-				<!--begin::Copyright-->
-				<div class="d-flex align-items-center order-2 order-md-1">
-					<!--begin::Logo-->
-					<a href="{{ route('home') }}">
-						<img alt="Logo" src="{{ asset('assets/media/logos/australia.png') }}" class="h-15px h-md-20px" />
-					</a>
-					<!--end::Logo-->
-
-					<!--begin::Copyright text-->
-					<span class="mx-5 fs-6 fw-semibold text-gray-600 pt-1">&copy; {{ date('Y') }} {{ config('app.name', 'JobMatch') }}. All rights reserved.</span>
-					<!--end::Copyright text-->
+					<div class="col-6">
+						<h4 style="color:#fff; opacity:.55; font-weight:800; font-size:.82rem; letter-spacing:.04em; text-transform:uppercase; margin-bottom:16px;">Company</h4>
+						<a href="{{ route('home') }}" style="color:#AFC0D2; text-decoration:none; font-size:.9rem; display:block; margin-bottom:12px;">About</a>
+						<a href="{{ route('home') }}" style="color:#AFC0D2; text-decoration:none; font-size:.9rem; display:block; margin-bottom:12px;">Careers</a>
+						<a href="{{ route('home') }}" style="color:#AFC0D2; text-decoration:none; font-size:.9rem; display:block; margin-bottom:12px;">Contact</a>
+						<a href="{{ route('home') }}" style="color:#AFC0D2; text-decoration:none; font-size:.9rem; display:block; margin-bottom:12px;">Privacy Policy</a>
+						<a href="{{ route('home') }}" style="color:#AFC0D2; text-decoration:none; font-size:.9rem; display:block;">Terms & Conditions</a>
+					</div>
 				</div>
-				<!--end::Copyright-->
-
-				<!--begin::Menu-->
-				<ul class="menu menu-gray-600 menu-hover-primary fw-semibold fs-6 fs-md-5 order-1 mb-5 mb-md-0">
-					<li class="menu-item">
-						<a href="{{ route('home') }}" class="menu-link px-2">Home</a>
-					</li>
-					<li class="menu-item mx-5">
-						<a href="{{ route('home') }}" target="_blank" class="menu-link px-2">Support</a>
-					</li>
-					<li class="menu-item">
-						<a href="{{ route('home') }}" class="menu-link px-2">Get Started</a>
-					</li>
-				</ul>
-				<!--end::Menu-->
 			</div>
-			<!--end::Wrapper-->
 		</div>
-		<!--end::Container-->
 	</div>
-	<!--end::Wrapper-->
+
+	<div style="border-top:1px solid rgba(255,255,255,0.08);"></div>
+
+	<div class="container">
+		<div class="d-flex flex-column flex-md-row flex-stack py-6 py-lg-8">
+			<div class="d-flex align-items-center order-2 order-md-1">
+				<a href="{{ route('home') }}">
+					<img alt="Logo" src="{{ country_logo() }}" class="h-15px h-md-20px" />
+				</a>
+				<span class="mx-5" style="color:#8298AC; font-size:.85rem;">&copy; {{ date('Y') }} {{ config('app.name', 'JobMatch') }}. All rights reserved.</span>
+			</div>
+
+			<ul class="d-flex list-unstyled gap-6 order-1 mb-5 mb-md-0">
+				<li><a href="{{ route('home') }}" style="color:#AFC0D2; text-decoration:none; font-size:.88rem;">Home</a></li>
+				<li><a href="{{ route('home') }}" target="_blank" style="color:#AFC0D2; text-decoration:none; font-size:.88rem;">Support</a></li>
+				<li><a href="{{ route('home') }}" style="color:#AFC0D2; text-decoration:none; font-size:.88rem;">Get Started</a></li>
+			</ul>
+		</div>
+	</div>
 </div>
 <!--end::Footer Section-->
