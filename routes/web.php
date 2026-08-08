@@ -9,17 +9,23 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 
 
 
-use App\Http\Controllers\Jobs\{ JobsController };
+use App\Http\Controllers\Jobs\{ JobsController, CompaniesController };
 // Jobs listing
 Route::get('/jobs', [JobsController::class, 'jobs'])->name('jobs.index');
-
-
-
 // Job detail
-Route::get('/jobs/{id}', [HomeController::class, 'show'])->name('jobs.show');
-
+Route::get('/jobs/job-detail/{id}', [JobsController::class, 'show'])->name('jobs.show');
 // Job application
-Route::post('/jobs/{id}/apply', [HomeController::class, 'apply'])->name('jobs.apply');
+Route::post('/jobs/{id}/track-application', [JobsController::class, 'trackApplication'])
+    ->name('jobs.track-application');
+
+
+Route::get('/employers', [CompaniesController::class, 'companies'])->name('companies.index');
+// Company detail
+Route::get('/employers/newest-jobs/{id}', [CompaniesController::class, 'show'])->name('companies.show');
+
+
+
+
 
 // Authentication pages
 Route::get('/register/employer', function () {

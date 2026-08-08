@@ -334,26 +334,27 @@
 			@endforelse
 		</div>
 	</div>
-</div>
-
-
-<div class="mt-10 mb-n20 position-relative z-index-2">
-	<div class="container">
-		<div class="row justify-content-center">
-			<div class="col-lg-10 col-xl-12">  
-				<div class="d-flex flex-stack flex-wrap flex-md-nowrap card-rounded shadow p-8 p-lg-12" style="background: linear-gradient(90deg, #20AA3E 0%, #03A588 100%);">
-					<div class="my-2 me-5">
-						<div class="fs-1 fs-lg-2qx fw-bold text-white mb-2">Ready to make your next move?</div>
-						<div class="fs-6 fs-lg-5 text-white fw-semibold opacity-75">Join thousands of {{ country_citizens() }} hiring and getting hired faster with AI-powered matching.</div>
-					</div>
-					<div class="d-flex flex-column flex-sm-row gap-3 flex-shrink-0 my-2">
-						<a href="{{ route('register') }}?as=seeker" class="btn btn-lg btn-outline border-2 btn-outline-white fw-bold">Find a Job</a>
-						<a href="{{ route('register') }}?as=employer" class="btn btn-lg btn-light fw-bold">Post a Job</a>
+	<div class="mt-10 mb-n20 position-relative z-index-2">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-lg-10 col-xl-12">  
+					<div class="d-flex flex-stack flex-wrap flex-md-nowrap card-rounded shadow p-8 p-lg-12" style="background: linear-gradient(90deg, #20AA3E 0%, #03A588 100%);">
+						<div class="my-2 me-5">
+							<div class="fs-1 fs-lg-2qx fw-bold text-white mb-2">Ready to make your next move?</div>
+							<div class="fs-6 fs-lg-5 text-white fw-semibold opacity-75">Join thousands of {{ country_citizens() }} hiring and getting hired faster with AI-powered matching.</div>
+						</div>
+						<div class="d-flex flex-column flex-sm-row gap-3 flex-shrink-0 my-2">
+							<a href="{{ route('register') }}?as=seeker" class="btn btn-lg btn-outline border-2 btn-outline-white fw-bold">Find a Job</a>
+							<a href="{{ route('register') }}?as=employer" class="btn btn-lg btn-light fw-bold">Post a Job</a>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
+
+ 
+
 
 @endsection

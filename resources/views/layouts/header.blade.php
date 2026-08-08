@@ -34,19 +34,19 @@
 
 								<!--begin::Menu item-->
 								<div class="menu-item">
-									<a class="menu-link nav-link active py-3 px-4 px-xxl-6" href="#home" data-kt-scroll-toggle="true" data-kt-drawer-dismiss="true">Home</a>
+									<a class="menu-link nav-link py-3 px-4 px-xxl-6 {{ Route::is('home') ? 'active' : '' }}" href="{{ route('home') }}" data-kt-scroll-toggle="true" data-kt-drawer-dismiss="true">Home</a>
 								</div>
 								<!--end::Menu item-->
 
 								<!--begin::Menu item-->
 								<div class="menu-item">
-									<a class="menu-link nav-link py-3 px-4 px-xxl-6" href="{{ route('jobs.index') }}" data-kt-scroll-toggle="true" data-kt-drawer-dismiss="true">Jobs</a>
+									<a class="menu-link nav-link py-3 px-4 px-xxl-6 {{ Route::is('jobs.index','jobs.show') ? 'active' : '' }}" href="{{ route('jobs.index') }}" data-kt-scroll-toggle="true" data-kt-drawer-dismiss="true">Jobs</a>
 								</div>
 								<!--end::Menu item-->
 
 								<!--begin::Menu item-->
 								<div class="menu-item">
-									<a class="menu-link nav-link py-3 px-4 px-xxl-6" href="#features" data-kt-scroll-toggle="true" data-kt-drawer-dismiss="true">Features</a>
+									<a class="menu-link nav-link py-3 px-4 px-xxl-6 {{ Route::is('companies.index','companies.show') ? 'active' : '' }}" href="{{ route('companies.index') }}" data-kt-scroll-toggle="true" data-kt-drawer-dismiss="true">Companies</a>
 								</div>
 								<!--end::Menu item-->
 

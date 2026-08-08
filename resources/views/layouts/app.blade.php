@@ -30,6 +30,7 @@
 		
 		<!-- Canonical -->
 		<link rel="canonical" href="@yield('canonical_url', url('/'))" />
+		<meta name="csrf-token" content="{{ csrf_token() }}">
 		
 		<!-- Favicon -->
 		<link rel="shortcut icon" href="{{ country_favicon() }}" />
@@ -67,6 +68,29 @@
 				window.top.location.replace(window.self.location.href); 
 			}
 		</script>
+
+		<style>
+			.jp-inline-filter-bar{ padding:0; }
+
+			.jp-search-input{ display:flex; align-items:center; gap:8px; height:36px; padding:0 10px; background:var(--jp-bg-soft); border:1px solid var(--jp-line); border-radius:8px; transition:.15s; }
+			.jp-search-input i{ color:var(--jp-muted); flex-shrink:0; }
+			.jp-search-input input{ border:none; background:transparent; outline:none; width:100%; height:100%; font-size:.82rem; color:var(--jp-ink); }
+			.jp-search-input:focus-within{ border-color:var(--jp-teal); background:#fff; }
+
+			.jp-select{ width:100%; height:36px; padding:0 10px; border:1px solid var(--jp-line); border-radius:8px; background:var(--jp-bg-soft); color:var(--jp-ink); font-size:.8rem; font-weight:600; transition:.15s; }
+			.jp-select:focus{ outline:none; border-color:var(--jp-teal); background:#fff; }
+
+			.jp-filter-submit{ width:36px; height:36px; flex-shrink:0; border:none; border-radius:8px; background:var(--jp-teal); color:#fff; display:flex; align-items:center; justify-content:center; transition:.15s; }
+			.jp-filter-submit:hover{ background:#028f76; }
+
+			.select2-container .select2-selection--single{ height:36px !important; border:1px solid var(--jp-line) !important; border-radius:8px !important; background:var(--jp-bg-soft) !important; display:flex; align-items:center; }
+			.select2-container .select2-selection--single .select2-selection__rendered{ color:var(--jp-ink); font-size:.8rem; font-weight:600; padding-left:10px; line-height:34px !important; }
+			.select2-container .select2-selection--single .select2-selection__arrow{ height:34px; }
+			.select2-container--default.select2-container--open .select2-selection--single{ border-color:var(--jp-teal) !important; }
+			.select2-dropdown{ border-color:var(--jp-line) !important; border-radius:8px !important; overflow:hidden; }
+			.select2-results__option--highlighted[aria-selected]{ background:var(--jp-teal) !important; color:#fff !important; }
+			.select2-container--default .select2-selection--single .select2-selection__arrow b{ border-color:var(--jp-muted) transparent transparent transparent !important; }
+		</style>
 	</head>
 	<!--end::Head-->
 

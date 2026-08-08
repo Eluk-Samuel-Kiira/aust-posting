@@ -81,7 +81,7 @@
 
 	/* ===== Regular jobs — two per line ===== */
 	.jp-job-grid .jp-job-col{ display:flex; }
-	.jp-job-row{ background:#fff; border:1px solid var(--jp-line); border-radius:14px; padding:22px; transition:.2s; box-shadow:0 6px 18px rgba(11,28,46,0.06); width:100%; display:flex; flex-direction:column; }
+	.jp-job-row{ background:linear-gradient(180deg, #F1FAF8 0%, #FFFFFF 60%); border:1px solid var(--jp-line); border-radius:14px; padding:22px; transition:.2s; box-shadow:0 6px 18px rgba(11,28,46,0.06); width:100%; display:flex; flex-direction:column; }
 	.jp-job-row:hover{ border-color:var(--jp-teal); box-shadow:0 14px 30px rgba(11,28,46,0.1); transform:translateY(-2px); }
 	.jp-job-row .title{ font-weight:700; color:var(--jp-ink); }
 	.jp-job-row .title:hover{ color:var(--jp-teal); }
@@ -162,232 +162,261 @@
 
 <!-- ====================== LISTINGS ====================== -->
 <div class="jp-listing-bg">
-<div class="container py-10 py-lg-12">
-	<div class="row g-6 g-lg-10">
+	<div class="container py-10 py-lg-12">
+		<div class="row g-6 g-lg-10">
 
-		<!-- ====================== FILTERS SIDEBAR ====================== -->
-		<div class="col-lg-3">
-			<div class="jp-filter-card">
-				<div class="d-flex align-items-center justify-content-between mb-2">
-					<h6 class="mb-0">Filters</h6>
-					<div class="d-flex align-items-center gap-3">
-						<a href="{{ route('jobs.index') }}" class="fs-8 fw-semibold text-muted">Reset all</a>
-						<button type="button" class="jp-filter-toggle d-lg-none" data-bs-toggle="collapse" data-bs-target="#jpFilterBody" aria-expanded="false" aria-controls="jpFilterBody">
-							<span class="icon-plus">+</span>
-							<span class="icon-minus">&minus;</span>
-						</button>
-					</div>
-				</div>
-
-				<div class="collapse d-lg-block" id="jpFilterBody">
-				<div class="jp-filter-divider"></div>
-				<h6>Job Type</h6>
-				@foreach(['Full-time','Part-time','Contract','Casual','Internship'] as $type)
-				<div class="form-check form-check-custom">
-					<input class="form-check-input" type="checkbox" name="job_type[]" value="{{ $type }}" id="jt-{{ $loop->index }}" />
-					<label class="form-check-label" for="jt-{{ $loop->index }}">{{ $type }}</label>
-				</div>
-				@endforeach
-
-				<div class="jp-filter-divider"></div>
-				<h6>Category</h6>
-				@if(!empty($categories) && count($categories) > 0)
-					@foreach($categories as $category)
-					<div class="form-check form-check-custom">
-						<input class="form-check-input" type="checkbox" name="category_id" value="{{ is_array($category) ? $category['id'] : $category->id }}" id="cat-{{ $loop->index }}" />
-						<label class="form-check-label" for="cat-{{ $loop->index }}">{{ is_array($category) ? $category['name'] : $category->name }}</label>
-					</div>
-					@endforeach
-				@else
-					<p class="text-muted fs-8">No categories available.</p>
-				@endif
-
-				<div class="jp-filter-divider"></div>
-				<h6>Salary Range (AUD)</h6>
-				<div class="d-flex gap-2 mb-2">
-					<input type="number" class="form-control form-control-sm" placeholder="Min" name="min_salary" value="{{ request('min_salary') }}" />
-					<input type="number" class="form-control form-control-sm" placeholder="Max" name="max_salary" value="{{ request('max_salary') }}" />
-				</div>
-
-				<div class="jp-filter-divider"></div>
-				<h6>Work Setting</h6>
-				<div class="form-check form-check-custom">
-					<input class="form-check-input" type="checkbox" name="setting[]" value="onsite" id="st-1" />
-					<label class="form-check-label" for="st-1">On-site</label>
-				</div>
-				<div class="form-check form-check-custom">
-					<input class="form-check-input" type="checkbox" name="setting[]" value="remote" id="st-2" />
-					<label class="form-check-label" for="st-2">Remote</label>
-				</div>
-				<div class="form-check form-check-custom">
-					<input class="form-check-input" type="checkbox" name="setting[]" value="hybrid" id="st-3" />
-					<label class="form-check-label" for="st-3">Hybrid</label>
-				</div>
-
-				<button type="submit" form="filter-form" class="btn jp-btn-primary w-100 mt-6">Apply Filters</button>
-				</div>
-			</div>
-		</div>
-
-		<!-- ====================== JOB LISTINGS ====================== -->
-		<div class="col-lg-9">
-
-			<!-- Featured jobs: ONE per line -->
-			@if(!empty($featuredJobs))
-			<div class="mb-10">
-				<div class="jp-kicker mb-2">Featured</div>
-				<div class="jp-featured-stack">
-					@foreach($featuredJobs as $job)
-					<div class="jp-featured-card">
-						<div class="jp-logo-sq">
-							@if(!empty($job['company']['logo']))
-								<img src="{{ $job['company']['logo'] }}" alt="{{ $job['company']['name'] ?? '' }}">
-							@else
-								{{ $jobInitials($job) }}
-							@endif
+			<!-- ====================== FILTERS SIDEBAR ====================== -->
+			<div class="col-lg-3">
+				<div class="jp-filter-card">
+					<div class="d-flex align-items-center justify-content-between mb-2">
+						<h6 class="mb-0">Filters</h6>
+						<div class="d-flex align-items-center gap-3">
+							<a href="{{ route('jobs.index') }}" class="fs-8 fw-semibold text-muted">Reset all</a>
+							<button type="button" class="jp-filter-toggle d-lg-none" data-bs-toggle="collapse" data-bs-target="#jpFilterBody" aria-expanded="false" aria-controls="jpFilterBody">
+								<span class="icon-plus">+</span>
+								<span class="icon-minus">&minus;</span>
+							</button>
 						</div>
-						<div class="body">
-							<a href="{{ route('jobs.show', $job['slug'] ?? $job['id']) }}" class="title d-block mb-1 text-decoration-none">
-								{{ $job['job_title'] ?? 'Job Title' }}
-							</a>
-							<div class="sub">
-								{{ $job['company']['name'] ?? 'Company' }} · {{ $job['job_location']['name'] ?? $job['duty_station'] ?? 'Location' }}
+					</div>
+
+					<div class="collapse d-lg-block" id="jpFilterBody">
+						<form action="{{ route('jobs.index') }}" method="GET" id="filterForm">
+							<div class="jp-filter-divider"></div>
+							<h6>Job Type</h6>
+							@foreach(['Full-time','Part-time','Contract','Casual','Internship'] as $type)
+							<div class="form-check form-check-custom">
+								<input class="form-check-input" type="checkbox" name="job_type[]" value="{{ $type }}" id="jt-{{ $loop->index }}" {{ in_array($type, (array) request('job_type', [])) ? 'checked' : '' }} />
+								<label class="form-check-label" for="jt-{{ $loop->index }}">{{ $type }}</label>
 							</div>
-						</div>
-						<div class="side">
-							<span class="jp-pill-featured d-none d-sm-inline-block">Featured</span>
-							<div class="jp-salary">{{ $job['formatted_salary'] ?? 'Negotiable' }}</div>
-							<a href="{{ route('jobs.show', $job['slug'] ?? $job['id']) }}" class="btn btn-sm jp-btn-primary">View</a>
-						</div>
+							@endforeach
+
+							<div class="jp-filter-divider"></div>
+							<h6>Category</h6>
+							@if(!empty($categories) && count($categories) > 0)
+								@foreach($categories as $category)
+								<div class="form-check form-check-custom">
+									<input class="form-check-input" type="checkbox" name="category_id[]" value="{{ is_array($category) ? $category['id'] : $category->id }}" id="cat-{{ $loop->index }}" {{ in_array(is_array($category) ? $category['id'] : $category->id, (array) request('category_id', [])) ? 'checked' : '' }} />
+									<label class="form-check-label" for="cat-{{ $loop->index }}">{{ is_array($category) ? $category['name'] : $category->name }}</label>
+								</div>
+								@endforeach
+							@else
+								<p class="text-muted fs-8">No categories available.</p>
+							@endif
+
+							<div class="jp-filter-divider"></div>
+							<h6>Salary Range (AUD)</h6>
+							<div class="d-flex gap-2 mb-2">
+								<input type="number" class="form-control form-control-sm" placeholder="Min" name="min_salary" value="{{ request('min_salary') }}" />
+								<input type="number" class="form-control form-control-sm" placeholder="Max" name="max_salary" value="{{ request('max_salary') }}" />
+							</div>
+
+							<div class="jp-filter-divider"></div>
+							<h6>Work Setting</h6>
+							<div class="form-check form-check-custom">
+								<input class="form-check-input" type="checkbox" name="setting[]" value="on-site" id="st-1" {{ in_array('on-site', (array) request('setting', [])) ? 'checked' : '' }} />
+								<label class="form-check-label" for="st-1">On-site</label>
+							</div>
+							<div class="form-check form-check-custom">
+								<input class="form-check-input" type="checkbox" name="setting[]" value="remote" id="st-2" {{ in_array('remote', (array) request('setting', [])) ? 'checked' : '' }} />
+								<label class="form-check-label" for="st-2">Remote</label>
+							</div>
+							<div class="form-check form-check-custom">
+								<input class="form-check-input" type="checkbox" name="setting[]" value="hybrid" id="st-3" {{ in_array('hybrid', (array) request('setting', [])) ? 'checked' : '' }} />
+								<label class="form-check-label" for="st-3">Hybrid</label>
+							</div>
+
+							<!-- Preserve search, location, and sort parameters -->
+							@if(request('search'))
+								<input type="hidden" name="search" value="{{ request('search') }}">
+							@endif
+							@if(request('location'))
+								<input type="hidden" name="location" value="{{ request('location') }}">
+							@endif
+							@if(request('sort'))
+								<input type="hidden" name="sort" value="{{ request('sort') }}">
+							@endif
+
+							<button type="submit" class="btn jp-btn-primary w-100 mt-6">Apply Filters</button>
+						</form>
 					</div>
-					@endforeach
 				</div>
 			</div>
-			@endif
 
-			<!-- Regular listing header -->
-			<div class="d-flex align-items-center justify-content-between mb-5 flex-wrap gap-3">
-				<div class="fw-semibold text-gray-700">Showing <span class="fw-bold text-gray-900">{{ count($jobList) }}</span> of {{ number_format($totalJobs ?? 0) }} jobs</div>
-				<select class="form-select form-select-sm jp-sort-select w-auto" onchange="window.location.href = updateQueryParam('sort', this.value)">
-					<option value="newest" {{ request('sort', 'newest') === 'newest' ? 'selected' : '' }}>Newest First</option>
-					<option value="salary_high" {{ request('sort') === 'salary_high' ? 'selected' : '' }}>Highest Salary</option>
-					<option value="salary_low" {{ request('sort') === 'salary_low' ? 'selected' : '' }}>Lowest Salary</option>
-				</select>
-			</div>
+			<!-- ====================== JOB LISTINGS ====================== -->
+			<div class="col-lg-9">
 
-			<form id="filter-form" action="{{ route('jobs.index') }}" method="GET">
-			<div class="row g-4 jp-job-grid">
-				@forelse($jobList as $job)
-					@php
-						$isLegacy = (bool) ($job['is_legacy'] ?? false);
-						$companyName = $job['company']['name'] ?? 'Company Name';
-						$title = $job['job_title'] ?? 'Job Title';
-						$slug = $job['slug'] ?? ($job['id'] ?? 1);
-						$location = $job['job_location']['name'] ?? ($job['duty_station'] ?: 'Location not specified');
-						$jobTypeName = $job['job_type']['name'] ?? ucfirst(str_replace('-', ' ', $job['employment_type'] ?? 'Full-time'));
-						$salary = $job['formatted_salary'] ?? 'Negotiable';
-						$category = $job['job_category']['name'] ?? 'General';
-					@endphp
-					<div class="col-md-6 jp-job-col">
-					<div class="jp-job-row">
-						<div class="d-flex gap-4">
-							<div class="jp-logo-sq flex-shrink-0">
+				<!-- Featured jobs: ONE per line -->
+				@if(!empty($featuredJobs))
+				<div class="mb-10">
+					<div class="jp-kicker mb-2">Featured</div>
+					<div class="jp-featured-stack">
+						@foreach($featuredJobs as $job)
+						<div class="jp-featured-card">
+							<div class="jp-logo-sq">
 								@if(!empty($job['company']['logo']))
-									<img src="{{ $job['company']['logo'] }}" alt="{{ $companyName }}">
+									<img src="{{ $job['company']['logo'] }}" alt="{{ $job['company']['name'] ?? '' }}">
 								@else
 									{{ $jobInitials($job) }}
 								@endif
 							</div>
-							<div class="flex-grow-1">
-								<div class="d-flex align-items-start justify-content-between flex-wrap gap-2">
-									<div>
-										<a href="{{ route('jobs.show', $slug) }}" class="title fs-5">{{ $title }}</a>
-										<div class="text-muted fs-7 mt-1">{{ $companyName }}</div>
-									</div>
-									<span class="jp-salary fs-6">{{ $salary }}</span>
+							<div class="body">
+								<a href="{{ route('jobs.show', $job['slug'] ?? $job['id']) }}" class="title d-block mb-1 text-decoration-none">
+									{{ $job['job_title'] ?? 'Job Title' }}
+								</a>
+								<div class="sub">
+									{{ $job['company']['name'] ?? 'Company' }} · {{ $job['job_location']['name'] ?? $job['duty_station'] ?? 'Location' }}
 								</div>
-								<div class="d-flex flex-wrap gap-4 mt-3 meta fs-8 text-muted">
-									<span><i class="ki-duotone ki-geolocation fs-6"><span class="path1"></span><span class="path2"></span></i>{{ $location }}</span>
-									<span><i class="ki-duotone ki-briefcase fs-6"><span class="path1"></span><span class="path2"></span></i>{{ $jobTypeName }}</span>
-									@if($postedAgo($job))
-										<span><i class="ki-duotone ki-calendar fs-6"><span class="path1"></span><span class="path2"></span></i>Posted {{ $postedAgo($job) }}</span>
-									@endif
-									{{-- Legacy-migrated listings inherited a placeholder "stop publishing" date
-									     rather than a real deadline, so we never show it as one - has_real_deadline
-									     tells us whether it's safe to trust. --}}
-									@if(!empty($job['has_real_deadline']) && !empty($job['deadline']))
-										<span><i class="ki-duotone ki-timer fs-6"><span class="path1"></span><span class="path2"></span></i>Apply by {{ \Carbon\Carbon::parse($job['deadline'])->format('d M Y') }}</span>
-									@endif
-								</div>
-								<div class="d-flex align-items-center justify-content-between mt-4 flex-wrap gap-2">
-									<div class="d-flex gap-2 flex-wrap">
-										<span class="jp-pill">{{ $category }}</span>
-										@if(!empty($job['is_urgent']))
-											<span class="jp-pill jp-pill-urgent">Urgent</span>
+							</div>
+							<div class="side">
+								<span class="jp-pill-featured d-none d-sm-inline-block">Featured</span>
+								<div class="jp-salary">{{ $job['formatted_salary'] ?? 'Negotiable' }}</div>
+								<a href="{{ route('jobs.show', $job['slug'] ?? $job['id']) }}" class="btn btn-sm jp-btn-primary">View</a>
+							</div>
+						</div>
+						@endforeach
+					</div>
+				</div>
+				@endif
+
+				<!-- Regular listing header -->
+				<div class="d-flex align-items-center justify-content-between mb-5 flex-wrap gap-3">
+					<div class="fw-semibold text-gray-700">Showing <span class="fw-bold text-gray-900">{{ count($jobList) }}</span> of {{ number_format($totalJobs ?? 0) }} jobs</div>
+					<select class="form-select form-select-sm jp-sort-select w-auto" onchange="window.location.href = updateQueryParam('sort', this.value)">
+						<option value="newest" {{ request('sort', 'newest') === 'newest' ? 'selected' : '' }}>Newest First</option>
+						<option value="salary_high" {{ request('sort') === 'salary_high' ? 'selected' : '' }}>Highest Salary</option>
+						<option value="salary_low" {{ request('sort') === 'salary_low' ? 'selected' : '' }}>Lowest Salary</option>
+					</select>
+				</div>
+
+				<!-- Job Grid - No form wrapping it -->
+				<div class="row g-4 jp-job-grid">
+					@forelse($jobList as $job)
+						@php
+							$isLegacy = (bool) ($job['is_legacy'] ?? false);
+							$companyName = $job['company']['name'] ?? 'Company Name';
+							$title = $job['job_title'] ?? 'Job Title';
+							$slug = $job['slug'] ?? ($job['id'] ?? 1);
+							$location = $job['job_location']['name'] ?? ($job['duty_station'] ?: 'Location not specified');
+							$jobTypeName = $job['job_type']['name'] ?? ucfirst(str_replace('-', ' ', $job['employment_type'] ?? 'Full-time'));
+							$salary = $job['formatted_salary'] ?? 'Negotiable';
+							$category = $job['job_category']['name'] ?? 'General';
+						@endphp
+						<div class="col-md-6 jp-job-col">
+							<div class="jp-job-row">
+								<div class="d-flex gap-4">
+									<div class="jp-logo-sq flex-shrink-0">
+										@if(!empty($job['company']['logo']))
+											<img src="{{ $job['company']['logo'] }}" alt="{{ $companyName }}">
+										@else
+											{{ $jobInitials($job) }}
 										@endif
 									</div>
-									<a href="{{ route('jobs.show', $slug) }}" class="btn btn-sm btn-outline btn-outline-primary">View & Apply</a>
+									<div class="flex-grow-1">
+										<div class="d-flex align-items-start justify-content-between flex-wrap gap-2">
+											<div>
+												<a href="{{ route('jobs.show', $slug) }}" class="title fs-5">{{ $title }}</a>
+												<div class="text-muted fs-7 mt-1">{{ $companyName }}</div>
+											</div>
+											<span class="jp-salary fs-6">{{ $salary }}</span>
+										</div>
+										<div class="d-flex flex-wrap gap-4 mt-3 meta fs-8 text-muted">
+											<span><i class="ki-duotone ki-geolocation fs-6"><span class="path1"></span><span class="path2"></span></i>{{ $location }}</span>
+											<span><i class="ki-duotone ki-briefcase fs-6"><span class="path1"></span><span class="path2"></span></i>{{ $jobTypeName }}</span>
+											@if($postedAgo($job))
+												<span><i class="ki-duotone ki-calendar fs-6"><span class="path1"></span><span class="path2"></span></i>Posted {{ $postedAgo($job) }}</span>
+											@endif
+											@if(!empty($job['has_real_deadline']) && !empty($job['deadline']))
+												<span><i class="ki-duotone ki-timer fs-6"><span class="path1"></span><span class="path2"></span></i>Apply by {{ \Carbon\Carbon::parse($job['deadline'])->format('d M Y') }}</span>
+											@endif
+										</div>
+										<div class="d-flex align-items-center justify-content-between mt-4 flex-wrap gap-2">
+											<div class="d-flex gap-2 flex-wrap">
+												<span class="jp-pill">{{ $category }}</span>
+												@if(!empty($job['is_urgent']))
+													<span class="jp-pill jp-pill-urgent">Urgent</span>
+												@endif
+											</div>
+											<a href="{{ route('jobs.show', $slug) }}" class="btn btn-sm btn-outline btn-outline-primary">View & Apply</a>
+										</div>
+									</div>
 								</div>
 							</div>
 						</div>
-					</div>
-					</div>
-				@empty
-					<div class="col-12">
-					<div class="jp-empty-card text-center py-10">
-						<i class="ki-duotone ki-file-deleted fs-3x text-muted d-block mb-3"><span class="path1"></span><span class="path2"></span></i>
-						<p class="fw-semibold fs-5 mb-1">No jobs found</p>
-						<p class="text-muted">Try broadening your search or clearing some filters.</p>
-					</div>
-					</div>
-				@endforelse
-			</div>
-			</form>
+					@empty
+						<div class="col-12">
+							<div class="jp-empty-card text-center py-10">
+								<i class="ki-duotone ki-file-deleted fs-3x text-muted d-block mb-3"><span class="path1"></span><span class="path2"></span></i>
+								<p class="fw-semibold fs-5 mb-1">No jobs found</p>
+								<p class="text-muted">Try broadening your search or clearing some filters.</p>
+							</div>
+						</div>
+					@endforelse
+				</div>
 
-			<!-- Pagination -->
-			@if(!empty($jobs['pagination']) && ($jobs['pagination']['last_page'] ?? 1) > 1)
-			@php
-				$current = (int) ($jobs['pagination']['current_page'] ?? 1);
-				$last = (int) ($jobs['pagination']['last_page'] ?? 1);
-				$window = 2;
-				$start = max(1, $current - $window);
-				$end = min($last, $current + $window);
-			@endphp
-			<div class="d-flex justify-content-center mt-10">
-				<nav>
-					<ul class="pagination">
-						<li class="page-item {{ $current <= 1 ? 'disabled' : '' }}">
-							<a class="page-link" href="{{ url()->current() }}?page={{ $current - 1 }}">Prev</a>
-						</li>
-
-						@if($start > 1)
-							<li class="page-item"><a class="page-link" href="{{ url()->current() }}?page=1">1</a></li>
-							@if($start > 2)<li class="page-item disabled"><span class="page-link">…</span></li>@endif
-						@endif
-
-						@for($i = $start; $i <= $end; $i++)
-							<li class="page-item {{ $i == $current ? 'active' : '' }}">
-								<a class="page-link" href="{{ url()->current() }}?page={{ $i }}{{ request()->has('search') ? '&search=' . urlencode(request('search')) : '' }}">{{ $i }}</a>
+				<!-- Pagination -->
+				@if(!empty($jobs['pagination']) && ($jobs['pagination']['last_page'] ?? 1) > 1)
+				@php
+					$current = (int) ($jobs['pagination']['current_page'] ?? 1);
+					$last = (int) ($jobs['pagination']['last_page'] ?? 1);
+					$window = 2;
+					$start = max(1, $current - $window);
+					$end = min($last, $current + $window);
+				@endphp
+				<div class="d-flex justify-content-center mt-10">
+					<nav>
+						<ul class="pagination">
+							<li class="page-item {{ $current <= 1 ? 'disabled' : '' }}">
+								<a class="page-link" href="{{ url()->current() }}?page={{ $current - 1 }}&{{ http_build_query(request()->except('page')) }}">Prev</a>
 							</li>
-						@endfor
 
-						@if($end < $last)
-							@if($end < $last - 1)<li class="page-item disabled"><span class="page-link">…</span></li>@endif
-							<li class="page-item"><a class="page-link" href="{{ url()->current() }}?page={{ $last }}">{{ $last }}</a></li>
-						@endif
+							@if($start > 1)
+								<li class="page-item"><a class="page-link" href="{{ url()->current() }}?page=1&{{ http_build_query(request()->except('page')) }}">1</a></li>
+								@if($start > 2)<li class="page-item disabled"><span class="page-link">…</span></li>@endif
+							@endif
 
-						<li class="page-item {{ $current >= $last ? 'disabled' : '' }}">
-							<a class="page-link" href="{{ url()->current() }}?page={{ $current + 1 }}">Next</a>
-						</li>
-					</ul>
-				</nav>
+							@for($i = $start; $i <= $end; $i++)
+								<li class="page-item {{ $i == $current ? 'active' : '' }}">
+									<a class="page-link" href="{{ url()->current() }}?page={{ $i }}&{{ http_build_query(request()->except('page')) }}">{{ $i }}</a>
+								</li>
+							@endfor
+
+							@if($end < $last)
+								@if($end < $last - 1)<li class="page-item disabled"><span class="page-link">…</span></li>@endif
+								<li class="page-item"><a class="page-link" href="{{ url()->current() }}?page={{ $last }}&{{ http_build_query(request()->except('page')) }}">{{ $last }}</a></li>
+							@endif
+
+							<li class="page-item {{ $current >= $last ? 'disabled' : '' }}">
+								<a class="page-link" href="{{ url()->current() }}?page={{ $current + 1 }}&{{ http_build_query(request()->except('page')) }}">Next</a>
+							</li>
+						</ul>
+					</nav>
+				</div>
+				@endif
+
 			</div>
-			@endif
-
+		</div>
+	</div>
+		
+	<div class="mt-10 mb-n20 position-relative z-index-2">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-lg-10 col-xl-12">  
+					<div class="d-flex flex-stack flex-wrap flex-md-nowrap card-rounded shadow p-8 p-lg-12" style="background: linear-gradient(90deg, #20AA3E 0%, #03A588 100%);">
+						<div class="my-2 me-5">
+							<div class="fs-1 fs-lg-2qx fw-bold text-white mb-2">Ready to make your next move?</div>
+							<div class="fs-6 fs-lg-5 text-white fw-semibold opacity-75">Join thousands of {{ country_citizens() }} hiring and getting hired faster with AI-powered matching.</div>
+						</div>
+						<div class="d-flex flex-column flex-sm-row gap-3 flex-shrink-0 my-2">
+							<a href="{{ route('register') }}?as=seeker" class="btn btn-lg btn-outline border-2 btn-outline-white fw-bold">Find a Job</a>
+							<a href="{{ route('register') }}?as=employer" class="btn btn-lg btn-light fw-bold">Post a Job</a>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>
-</div>
+
 
 @endsection
 
@@ -395,8 +424,26 @@
 <script>
 function updateQueryParam(key, value) {
     const url = new URL(window.location.href);
-    url.searchParams.set(key, value);
+    if (value) {
+        url.searchParams.set(key, value);
+    } else {
+        url.searchParams.delete(key);
+    }
     return url.toString();
 }
+
+// Auto-submit filter form when checkbox changes (optional)
+document.addEventListener('DOMContentLoaded', function() {
+    const filterForm = document.getElementById('filterForm');
+    if (filterForm) {
+        // You can enable auto-submit by uncommenting below
+        // const checkboxes = filterForm.querySelectorAll('input[type="checkbox"]');
+        // checkboxes.forEach(checkbox => {
+        //     checkbox.addEventListener('change', function() {
+        //         filterForm.submit();
+        //     });
+        // });
+    }
+});
 </script>
 @endpush
