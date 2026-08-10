@@ -34,5 +34,26 @@ class AppServiceProvider extends ServiceProvider
             $view->with('navCategories', is_array($categories) ? $categories : []);
             $view->with('navLocations', is_array($locations) ? $locations : []);
         });
+
+        // Share pages with footer
+        View::composer('layouts.footer', function ($view) {
+            $countryService = app(CountryService::class);
+
+            // Fetch pages from API
+            $pages = $countryService->api('pages', [], 'GET', 3600);
+            
+            // Filter only active pages and sort by sort_order
+            $footerPages = [];
+            if (is_array($pages) && !empty($pages)) {
+                // Sort by sort_order
+                usort($pages, function($a, $b) {
+                    return ($a['sort_order'] ?? 0) <=> ($b['sort_order'] ?? 0);
+                });
+                
+                $footerPages = $pages;
+            }
+
+            $view->with('footerPages', $footerPages);
+        });
     }
 }

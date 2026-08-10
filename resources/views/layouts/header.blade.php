@@ -210,12 +210,6 @@
 								
 								<!--begin::Menu item-->
 								<div class="menu-item">
-									<a class="menu-link nav-link py-3 px-4 px-xxl-6" href="#benefits" data-kt-scroll-toggle="true" data-kt-drawer-dismiss="true">Why Us</a>
-								</div>
-								<!--end::Menu item-->
-
-								<!--begin::Menu item-->
-								<div class="menu-item">
 									<a class="menu-link nav-link py-3 px-4 px-xxl-6" href="#team" data-kt-scroll-toggle="true" data-kt-drawer-dismiss="true">Team</a>
 								</div>
 								<!--end::Menu item-->
