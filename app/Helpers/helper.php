@@ -106,7 +106,7 @@ if (!function_exists('country_logo')) {
         }
         
         // Fallback to default logo
-        return asset('assets/media/logos/default.png');
+        return asset('assets/media/logos/australia.png');
     }
 }
 
@@ -128,21 +128,21 @@ if (!function_exists('country_favicon')) {
         }
         
         // Fallback to default favicon
-        return asset('assets/media/logos/favicon.png');
+        return asset('assets/media/logos/australia.ico');
     }
 }
 
 if (!function_exists('country_logo_path')) {
     function country_logo_path(): string
     {
-        return public_path("assets/media/logos/" . country_code() . ".png");
+        return public_path("logos/" . country_code() . ".png");
     }
 }
 
 if (!function_exists('country_favicon_path')) {
     function country_favicon_path(): string
     {
-        return public_path("assets/media/logos/" . country_code() . ".ico");
+        return public_path("logos/" . country_code() . ".ico");
     }
 }
 
