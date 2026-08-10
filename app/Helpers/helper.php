@@ -98,7 +98,7 @@ if (!function_exists('country_logo')) {
     function country_logo(): string
     {
         $countryCode = country_name();
-        $logoPath = "assets/media/logos/{$countryCode}.png";
+        $logoPath = "logos/{$countryCode}.png";
         
         // Check if country-specific logo exists
         if (file_exists(public_path($logoPath))) {
@@ -114,7 +114,7 @@ if (!function_exists('country_favicon')) {
     function country_favicon(): string
     {
         $countryCode = country_name();
-        $faviconPath = "assets/media/logos/{$countryCode}.ico";
+        $faviconPath = "logos/{$countryCode}.ico";
         
         // Check if country-specific favicon exists
         if (file_exists(public_path($faviconPath))) {
