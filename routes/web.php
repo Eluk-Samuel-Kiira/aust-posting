@@ -54,7 +54,7 @@ Route::get('/register/employer', function () {
 })->name('register.employer');
 
 Route::get('/login', function () {
-    return view('auth.login');
+    return view('auth.login-register');
 })->name('login');
 
 Route::get('/register', function () {
@@ -66,3 +66,26 @@ Route::get('/contact', function () {
 })->name('contact');
 
 
+
+
+
+// /sitemaps/au/sitemap.xml
+Route::get('/sitemaps/{country}/{filename}', function ($country, $filename) {
+    $country = strtolower($country);
+    // \Log::info($country);
+    $mainAppUrl = config('app.main_app_url');
+    $sitemapUrl = $mainAppUrl . "/sitemaps/{$country}/{$filename}";
+    
+    try {
+        $response = Http::timeout(30)->get($sitemapUrl);
+        
+        if (!$response->successful()) {
+            abort(404);
+        }
+        
+        return response($response->body(), 200)
+            ->header('Content-Type', 'application/xml');
+    } catch (\Exception $e) {
+        abort(404);
+    }
+})->where('filename', '.*\.xml$');

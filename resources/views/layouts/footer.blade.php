@@ -20,8 +20,8 @@
 					<h3 style="color:#fff; font-weight:800; font-size:1.15rem; margin-bottom:6px;">Need a Custom Plan?</h3>
 					<p style="color:#AFC0D2; font-size:.9rem; margin-bottom:0;">
 						Email us at
-						<a href="mailto:support@jobmatch.com.au" style="color:#7CF0C2; text-decoration:none; font-weight:700;">support@jobmatch.com.au</a>
-						or call <span style="color:#fff;">1300 JOB AU</span>
+						<a href="mailto:p.nakabugo@lafabsolution.com" style="color:#7CF0C2; text-decoration:none; font-weight:700;">p.nakabugo@lafabsolution.com</a>
+						or call <span style="color:#fff;">+256 773966860</span>
 					</p>
 				</div>
 
@@ -29,7 +29,7 @@
 					<h3 style="color:#fff; font-weight:800; font-size:1.15rem; margin-bottom:6px;">WhatsApp Support</h3>
 					<p style="color:#AFC0D2; font-size:.9rem; margin-bottom:0;">
 						Chat with our team directly.
-						<a href="https://wa.me/61412345678" target="_blank" rel="noopener noreferrer" style="color:#7CF0C2; text-decoration:none; font-weight:700;">Open WhatsApp</a>
+						<a href="https://wa.me/256773966860" target="_blank" rel="noopener noreferrer" style="color:#7CF0C2; text-decoration:none; font-weight:700;">Open WhatsApp</a>
 					</p>
 				</div>
 			</div>
@@ -41,7 +41,6 @@
 						<a href="{{ route('home') }}" style="color:#AFC0D2; text-decoration:none; font-size:.9rem; display:block; margin-bottom:12px;">Features</a>
 						<a href="{{ route('home') }}" style="color:#AFC0D2; text-decoration:none; font-size:.9rem; display:block; margin-bottom:12px;">Pricing</a>
 						<a href="{{ route('home') }}" style="color:#AFC0D2; text-decoration:none; font-size:.9rem; display:block; margin-bottom:12px;">Services</a>
-						<a href="{{ route('home') }}" style="color:#AFC0D2; text-decoration:none; font-size:.9rem; display:block; margin-bottom:12px;">Documentation</a>
 						<a href="{{ route('home') }}" style="color:#AFC0D2; text-decoration:none; font-size:.9rem; display:block;">Blog</a>
 					</div>
 

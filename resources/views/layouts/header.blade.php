@@ -55,10 +55,10 @@
 									<!-- Desktop: hover-based dropdown -->
 									<div class="jp-nav-categories-desktop">
 										<span class="menu-link nav-link py-3 px-4 px-xxl-6 d-flex align-items-center gap-1 {{ Route::is('categories.show') ? 'active' : '' }}" style="cursor: pointer;">
-											<i class="ki-duotone ki-folder fs-4 text-warning">
+											<!-- <i class="ki-duotone ki-folder fs-4 text-warning">
 												<span class="path1"></span>
 												<span class="path2"></span>
-											</i>
+											</i> -->
 											Categories
 											<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
 												<path d="M6 9l6 6 6-6"/>
@@ -93,10 +93,10 @@
 									<!-- Mobile: details-based dropdown -->
 									<details class="jp-nav-categories-mobile">
 										<summary class="menu-link nav-link py-3 px-4 px-xxl-6 d-flex align-items-center gap-1 {{ Route::is('categories.show') ? 'active' : '' }}" style="cursor: pointer;">
-											<i class="ki-duotone ki-folder fs-3 me-1">
+											<!-- <i class="ki-duotone ki-folder fs-3 me-1">
 												<span class="path1"></span>
 												<span class="path2"></span>
-											</i>
+											</i> -->
 											Categories
 											<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
 												<path d="M6 9l6 6 6-6"/>
@@ -135,10 +135,10 @@
 									<!-- Desktop: hover-based dropdown -->
 									<div class="jp-nav-locations-desktop">
 										<span class="menu-link nav-link py-3 px-4 px-xxl-6 d-flex align-items-center gap-1 {{ Route::is('locations.show') ? 'active' : '' }}" style="cursor: pointer;">
-											<i class="ki-duotone ki-geolocation fs-3 me-1">
+											<!-- <i class="ki-duotone ki-geolocation fs-3 me-1">
 												<span class="path1"></span>
 												<span class="path2"></span>
-											</i>
+											</i> -->
 											Locations
 											<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
 												<path d="M6 9l6 6 6-6"/>
@@ -172,10 +172,10 @@
 									<!-- Mobile: details-based dropdown -->
 									<details class="jp-nav-locations-mobile">
 										<summary class="menu-link nav-link py-3 px-4 px-xxl-6 d-flex align-items-center gap-1 {{ Route::is('locations.show') ? 'active' : '' }}" style="cursor: pointer;">
-											<i class="ki-duotone ki-geolocation fs-3 me-1">
+											<!-- <i class="ki-duotone ki-geolocation fs-3 me-1">
 												<span class="path1"></span>
 												<span class="path2"></span>
-											</i>
+											</i> -->
 											Locations
 											<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
 												<path d="M6 9l6 6 6-6"/>
@@ -208,6 +208,7 @@
 								</div>
 								<!--end::Menu item - Locations-->
 								
+								{{-- 
 								<!--begin::Menu item-->
 								<div class="menu-item">
 									<a class="menu-link nav-link py-3 px-4 px-xxl-6" href="#team" data-kt-scroll-toggle="true" data-kt-drawer-dismiss="true">Team</a>
@@ -219,10 +220,11 @@
 									<a class="menu-link nav-link py-3 px-4 px-xxl-6" href="#pricing" data-kt-scroll-toggle="true" data-kt-drawer-dismiss="true">Pricing</a>
 								</div>
 								<!--end::Menu item-->
+								--}}
 
 								<!--begin::Menu item - Mobile Sign In (visible only on mobile)-->
 								<div class="menu-item d-lg-none mt-5 pt-5 border-top">
-									<a href="{{ route('home') }}" class="menu-link py-3 px-4">
+									<a href="{{ route('login') }}" class="menu-link py-3 px-4">
 										<span class="btn btn-success w-100">Sign In</span>
 									</a>
 								</div>
@@ -236,7 +238,7 @@
 					<!--begin::Right side - Mobile menu toggle + Desktop Sign In-->
 					<div class="d-flex align-items-center gap-2 gap-lg-0">
 						<!-- Desktop Sign In -->
-						<a href="{{ route('home') }}" class="btn btn-success d-none d-lg-inline-block">Sign In</a>
+						<a href="{{ route('login') }}" class="btn btn-success d-none d-lg-inline-block">Sign In</a>
 
 						<!-- Mobile menu toggle - visible only on mobile -->
 						<button class="btn btn-icon btn-active-color-primary d-flex d-lg-none p-0" id="kt_landing_menu_toggle" style="margin-right: -12px; margin-top: 2px;">
