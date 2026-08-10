@@ -27,6 +27,24 @@ Route::get('/employers/newest-jobs/job-categories/newest-jobs/{id}', [CategoryCo
 Route::get('/jobs/location/{slug}', [LocationController::class, 'show'])->name('locations.show');
 
 
+Route::get('/pages/{slug}', [HomeController::class, 'show'])->name('pages.show');
+
+// Direct routes for common pages (optional - redirects to slug-based routes)
+Route::get('pages/about', function () {
+    return redirect()->route('pages.show', 'about');
+})->name('about');
+
+Route::get('pages/contact', function () {
+    return redirect()->route('pages.show', 'contact');
+})->name('contact');
+
+Route::get('pages/privacy-policy', function () {
+    return redirect()->route('pages.show', 'privacy-policy');
+})->name('privacy');
+
+Route::get('pages/terms-conditions', function () {
+    return redirect()->route('pages.show', 'terms-conditions');
+})->name('terms');
 
 
 

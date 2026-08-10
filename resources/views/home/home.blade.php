@@ -282,79 +282,138 @@
 
 <!-- ====================== FEATURED JOBS ====================== -->
 <div style="background:var(--jp-bg-soft);">
-	<div class="container py-20">
-		<div class="d-flex align-items-end justify-content-between mb-10 flex-wrap gap-3">
-			<div>
-				<div class="jp-kicker mb-2">Live Right Now</div>
-				<h2 class="jp-h2 mb-0">Featured jobs</h2>
-			</div>
-			<a href="{{ route('jobs.index') }}" class="btn btn-outline btn-outline-primary">View All Jobs <i class="ki-duotone ki-arrow-right fs-4 ms-1"></i></a>
-		</div>
-		<div class="row g-5">
-			@forelse(($featuredJobs ?? []) as $job)
-			<div class="col-md-6 col-lg-4">
-				<div class="jp-job-card featured">
-					<div class="d-flex align-items-center justify-content-between mb-4">
-						<div class="jp-logo-sq">{{ strtoupper(substr($job->company_name ?? 'JM', 0, 2)) }}</div>
-						<span class="jp-pill">Featured</span>
-					</div>
-					<h5 class="fw-bold mb-1"><a href="{{ route('jobs.show', $job->slug ?? $job->id) }}" class="text-gray-900">{{ $job->title ?? 'Job Title' }}</a></h5>
-					<div class="text-muted fs-7 mb-3">{{ $job->company_name ?? 'Company' }} · {{ $job->location ?? 'Location' }}</div>
-					<div class="d-flex flex-wrap gap-2 mb-4">
-						<span class="jp-pill">{{ $job->job_type ?? 'Full-time' }}</span>
-						<span class="jp-pill">{{ $job->category ?? 'General' }}</span>
-					</div>
-					<div class="d-flex align-items-center justify-content-between">
-						<span class="fw-bold" style="color:var(--jp-teal);">{{ $job->salary ?? 'Competitive' }}</span>
-						<a href="{{ route('jobs.show', $job->slug ?? $job->id) }}" class="btn btn-sm jp-btn-primary">Apply</a>
-					</div>
-				</div>
-			</div>
-			@empty
-			@foreach(['Warehouse Team Lead','Registered Nurse — Casual','Frontend Developer'] as $i => $title)
-			<div class="col-md-6 col-lg-4">
-				<div class="jp-job-card featured">
-					<div class="d-flex align-items-center justify-content-between mb-4">
-						<div class="jp-logo-sq">{{ ['CG','SV','TC'][$i] }}</div>
-						<span class="jp-pill">Featured</span>
-					</div>
-					<h5 class="fw-bold mb-1"><a href="{{ route('jobs.index') }}" class="text-gray-900">{{ $title }}</a></h5>
-					<div class="text-muted fs-7 mb-3">{{ ['Coles Group','St Vincent\'s Health','Techable Co'][$i] }} · {{ ['Western Sydney','Melbourne','Remote'][$i] }}</div>
-					<div class="d-flex flex-wrap gap-2 mb-4">
-						<span class="jp-pill">{{ ['Full-time','Casual','Contract'][$i] }}</span>
-						<span class="jp-pill">{{ ['Logistics','Healthcare','Technology'][$i] }}</span>
-					</div>
-					<div class="d-flex align-items-center justify-content-between">
-						<span class="fw-bold" style="color:var(--jp-teal);">{{ ['$34/hr','$52/hr','$95K–$115K'][$i] }}</span>
-						<a href="{{ route('jobs.index') }}" class="btn btn-sm jp-btn-primary">Apply</a>
-					</div>
-				</div>
-			</div>
-			@endforeach
-			@endforelse
-		</div>
-	</div>
-	<div class="mt-10 mb-n20 position-relative z-index-2">
-		<div class="container">
-			<div class="row justify-content-center">
-				<div class="col-lg-10 col-xl-12">  
-					<div class="d-flex flex-stack flex-wrap flex-md-nowrap card-rounded shadow p-8 p-lg-12" style="background: linear-gradient(90deg, #20AA3E 0%, #03A588 100%);">
-						<div class="my-2 me-5">
-							<div class="fs-1 fs-lg-2qx fw-bold text-white mb-2">Ready to make your next move?</div>
-							<div class="fs-6 fs-lg-5 text-white fw-semibold opacity-75">Join thousands of {{ country_citizens() }} hiring and getting hired faster with AI-powered matching.</div>
-						</div>
-						<div class="d-flex flex-column flex-sm-row gap-3 flex-shrink-0 my-2">
-							<a href="{{ route('register') }}?as=seeker" class="btn btn-lg btn-outline border-2 btn-outline-white fw-bold">Find a Job</a>
-							<a href="{{ route('register') }}?as=employer" class="btn btn-lg btn-light fw-bold">Post a Job</a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+    <div class="container py-20">
+        <div class="d-flex align-items-end justify-content-between mb-10 flex-wrap gap-3">
+            <div>
+                <div class="jp-kicker mb-2">Live Right Now</div>
+                <h2 class="jp-h2 mb-0">Featured jobs</h2>
+            </div>
+            <a href="{{ route('jobs.index') }}" class="btn btn-outline btn-outline-primary">View All Jobs <i class="ki-duotone ki-arrow-right fs-4 ms-1"><span class="path1"></span><span class="path2"></span></i></a>
+        </div>
+        
+        @php
+            // Get featured jobs data
+            $featuredJobsList = $featuredJobs['data'] ?? [];
+            $hasFeaturedJobs = count($featuredJobsList) > 0;
+        @endphp
+
+        @if($hasFeaturedJobs)
+        <div class="row g-5">
+            @foreach($featuredJobsList as $job)
+                @php
+                    $jobCompanyName = $job['company']['name'] ?? 'Company';
+                    $jobTitle = $job['job_title'] ?? 'Job Title';
+                    $jobSlug = $job['slug'] ?? ($job['id'] ?? 1);
+                    $jobLocation = $job['job_location']['name'] ?? $job['duty_station'] ?? 'Location';
+                    $jobTypeName = $job['job_type']['name'] ?? ucfirst(str_replace('-', ' ', $job['employment_type'] ?? 'Full-time'));
+                    $jobCategory = $job['job_category']['name'] ?? 'General';
+                    $jobSalary = $job['formatted_salary'] ?? 'Competitive';
+                    $companyLogo = $job['company']['logo'] ?? null;
+                    $initials = $jobCompanyName !== '' ? strtoupper(substr($jobCompanyName, 0, 2)) : 'JM';
+                @endphp
+                <div class="col-md-6 col-lg-4">
+                    <div class="jp-job-card featured">
+                        <div class="d-flex align-items-center justify-content-between mb-4">
+                            <div class="jp-logo-sq">
+                                @if($companyLogo)
+                                    <img src="{{ $companyLogo }}" alt="{{ $jobCompanyName }}" style="width:100%;height:100%;object-fit:cover;">
+                                @else
+                                    {{ $initials }}
+                                @endif
+                            </div>
+                            <span class="jp-pill jp-pill-featured">
+                                <i class="ki-duotone ki-star fs-7 me-1">
+                                    <span class="path1"></span>
+                                    <span class="path2"></span>
+                                </i>
+                                Featured
+                            </span>
+                        </div>
+                        <h5 class="fw-bold mb-1">
+                            <a href="{{ route('jobs.show', $jobSlug) }}" class="text-gray-900 text-decoration-none">{{ $jobTitle }}</a>
+                        </h5>
+                        <div class="text-muted fs-7 mb-3">{{ $jobCompanyName }} · {{ $jobLocation }}</div>
+                        <div class="d-flex flex-wrap gap-2 mb-4">
+                            <span class="jp-pill">{{ $jobTypeName }}</span>
+                            <span class="jp-pill">{{ $jobCategory }}</span>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-between">
+                            <span class="fw-bold" style="color:var(--jp-teal);">{{ $jobSalary }}</span>
+                            <a href="{{ route('jobs.show', $jobSlug) }}" class="btn btn-sm jp-btn-primary">View</a>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+        @else
+        <!-- Fallback: Show placeholder featured jobs when no real jobs exist -->
+        <div class="row g-5">
+            @foreach(['Warehouse Team Lead','Registered Nurse — Casual','Frontend Developer'] as $i => $title)
+            <div class="col-md-6 col-lg-4">
+                <div class="jp-job-card featured">
+                    <div class="d-flex align-items-center justify-content-between mb-4">
+                        <div class="jp-logo-sq">{{ ['CG','SV','TC'][$i] }}</div>
+                        <span class="jp-pill jp-pill-featured">
+                            <i class="ki-duotone ki-star fs-7 me-1">
+                                <span class="path1"></span>
+                                <span class="path2"></span>
+                            </i>
+                            Featured
+                        </span>
+                    </div>
+                    <h5 class="fw-bold mb-1"><a href="{{ route('jobs.index') }}" class="text-gray-900 text-decoration-none">{{ $title }}</a></h5>
+                    <div class="text-muted fs-7 mb-3">{{ ['Coles Group','St Vincent\'s Health','Techable Co'][$i] }} · {{ ['Western Sydney','Melbourne','Remote'][$i] }}</div>
+                    <div class="d-flex flex-wrap gap-2 mb-4">
+                        <span class="jp-pill">{{ ['Full-time','Casual','Contract'][$i] }}</span>
+                        <span class="jp-pill">{{ ['Logistics','Healthcare','Technology'][$i] }}</span>
+                    </div>
+                    <div class="d-flex align-items-center justify-content-between">
+                        <span class="fw-bold" style="color:var(--jp-teal);">{{ ['$34/hr','$52/hr','$95K–$115K'][$i] }}</span>
+                        <a href="{{ route('jobs.index') }}" class="btn btn-sm jp-btn-primary">Apply</a>
+                    </div>
+                </div>
+            </div>
+            @endforeach
+        </div>
+        @endif
+    </div>
+    
+    <!-- CTA Banner -->
+    <div class="mt-10 mb-n20 position-relative z-index-2">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-10 col-xl-12">  
+                    <div class="d-flex flex-stack flex-wrap flex-md-nowrap card-rounded shadow p-8 p-lg-12" style="background: linear-gradient(90deg, #20AA3E 0%, #03A588 100%);">
+                        <div class="my-2 me-5">
+                            <div class="fs-1 fs-lg-2qx fw-bold text-white mb-2">Ready to make your next move?</div>
+                            <div class="fs-6 fs-lg-5 text-white fw-semibold opacity-75">Join thousands of {{ country_citizens() }} hiring and getting hired faster with AI-powered matching.</div>
+                        </div>
+                        <div class="d-flex flex-column flex-sm-row gap-3 flex-shrink-0 my-2">
+                            <a href="{{ route('register') }}?as=seeker" class="btn btn-lg btn-outline border-2 btn-outline-white fw-bold">Find a Job</a>
+                            <a href="{{ route('register') }}?as=employer" class="btn btn-lg btn-light fw-bold">Post a Job</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
- 
+<style>
+    .jp-pill-featured {
+        background: #E7F1FB;
+        color: #1D6FCC;
+        border-color: rgba(29, 111, 204, 0.15);
+        font-size: 11px;
+        font-weight: 700;
+        padding: 4px 12px;
+        border-radius: 20px;
+        border: 1px solid var(--jp-line);
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+    }
+</style> 
 
 
 @endsection

@@ -1,5 +1,3 @@
-
-
 {{--
 	NO @push('styles') HERE ON PURPOSE.
 	This file is loaded via @include() inside <body>, but @stack('styles') sits
@@ -49,11 +47,37 @@
 
 					<div class="col-6">
 						<h4 style="color:#fff; opacity:.55; font-weight:800; font-size:.82rem; letter-spacing:.04em; text-transform:uppercase; margin-bottom:16px;">Company</h4>
-						<a href="{{ route('home') }}" style="color:#AFC0D2; text-decoration:none; font-size:.9rem; display:block; margin-bottom:12px;">About</a>
-						<a href="{{ route('home') }}" style="color:#AFC0D2; text-decoration:none; font-size:.9rem; display:block; margin-bottom:12px;">Careers</a>
-						<a href="{{ route('home') }}" style="color:#AFC0D2; text-decoration:none; font-size:.9rem; display:block; margin-bottom:12px;">Contact</a>
-						<a href="{{ route('home') }}" style="color:#AFC0D2; text-decoration:none; font-size:.9rem; display:block; margin-bottom:12px;">Privacy Policy</a>
-						<a href="{{ route('home') }}" style="color:#AFC0D2; text-decoration:none; font-size:.9rem; display:block;">Terms & Conditions</a>
+						
+						@php
+							// Define default pages if no pages from API
+							$defaultPages = [
+								['slug' => 'about', 'title' => 'About'],
+								['slug' => 'contact', 'title' => 'Contact'],
+								['slug' => 'privacy-policy', 'title' => 'Privacy Policy'],
+								['slug' => 'terms-conditions', 'title' => 'Terms & Conditions'],
+							];
+							
+							// Use footerPages if available, otherwise use defaults
+							$pagesToDisplay = isset($footerPages) && !empty($footerPages) ? $footerPages : $defaultPages;
+						@endphp
+						
+						@forelse($pagesToDisplay as $page)
+							@php
+								$pageSlug = is_array($page) ? ($page['slug'] ?? '') : $page->slug ?? '';
+								$pageTitle = is_array($page) ? ($page['title'] ?? '') : $page->title ?? '';
+							@endphp
+							@if(!empty($pageSlug) && !empty($pageTitle))
+								<a href="{{ route('pages.show', $pageSlug) }}" style="color:#AFC0D2; text-decoration:none; font-size:.9rem; display:block; margin-bottom:12px;">
+									{{ $pageTitle }}
+								</a>
+							@endif
+						@empty
+							<!-- Fallback links if no pages are available -->
+							<a href="{{ route('pages.show', 'about') }}" style="color:#AFC0D2; text-decoration:none; font-size:.9rem; display:block; margin-bottom:12px;">About</a>
+							<a href="{{ route('pages.show', 'contact') }}" style="color:#AFC0D2; text-decoration:none; font-size:.9rem; display:block; margin-bottom:12px;">Contact</a>
+							<a href="{{ route('pages.show', 'privacy-policy') }}" style="color:#AFC0D2; text-decoration:none; font-size:.9rem; display:block; margin-bottom:12px;">Privacy Policy</a>
+							<a href="{{ route('pages.show', 'terms-conditions') }}" style="color:#AFC0D2; text-decoration:none; font-size:.9rem; display:block;">Terms & Conditions</a>
+						@endforelse
 					</div>
 				</div>
 			</div>
@@ -73,8 +97,8 @@
 
 			<ul class="d-flex list-unstyled gap-6 order-1 mb-5 mb-md-0">
 				<li><a href="{{ route('home') }}" style="color:#AFC0D2; text-decoration:none; font-size:.88rem;">Home</a></li>
-				<li><a href="{{ route('home') }}" target="_blank" style="color:#AFC0D2; text-decoration:none; font-size:.88rem;">Support</a></li>
-				<li><a href="{{ route('home') }}" style="color:#AFC0D2; text-decoration:none; font-size:.88rem;">Get Started</a></li>
+				<li><a href="{{ route('contact') }}" target="_blank" style="color:#AFC0D2; text-decoration:none; font-size:.88rem;">Support</a></li>
+				<li><a href="{{ route('login') }}" style="color:#AFC0D2; text-decoration:none; font-size:.88rem;">Get Started</a></li>
 			</ul>
 		</div>
 	</div>

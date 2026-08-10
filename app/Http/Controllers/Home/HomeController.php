@@ -3,23 +3,45 @@
 namespace App\Http\Controllers\Home;
 
 use App\Http\Controllers\Controller;
+use App\Services\CountryService;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class HomeController extends Controller
 {
+    protected CountryService $countryService;
+
+    public function __construct(CountryService $countryService)
+    {
+        $this->countryService = $countryService;
+    }
+
     public function index() : View
     {
-        return view('home.home');
+        // Fetch featured jobs from the API
+        $featuredJobs = $this->countryService->api('jobs', ['featured' => true, 'per_page' => 3], 'GET', 300, false);
+        
+        // If featured jobs are empty, try to get any active jobs as fallback
+        if (empty($featuredJobs['data']) || count($featuredJobs['data']) === 0) {
+            $featuredJobs = $this->countryService->api('jobs', ['per_page' => 3, 'sort' => 'newest'], 'GET', 300, false);
+        }
+
+        return view('home.home', compact('featuredJobs'));
     }
 
-    public function jobs() : View
+        /**
+     * Display a page by slug
+     */
+    public function show($slug)
     {
-        return view('home.job-index');
-    }
+        $page = $this->countryService->api('pages/' . $slug);
 
-    public function showJobs() : View
-    {
-        return view('home.job-show');
+        if (!$page) {
+            abort(404, 'Page not found');
+        }
+
+        $country = $this->countryService->getCountryData();
+
+        return view('pages.show', compact('page', 'country'));
     }
 }
