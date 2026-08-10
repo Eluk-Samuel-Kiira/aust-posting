@@ -345,36 +345,6 @@
                 </div>
             @endforeach
         </div>
-        @else
-        <!-- Fallback: Show placeholder featured jobs when no real jobs exist -->
-        <div class="row g-5">
-            @foreach(['Warehouse Team Lead','Registered Nurse — Casual','Frontend Developer'] as $i => $title)
-            <div class="col-md-6 col-lg-4">
-                <div class="jp-job-card featured">
-                    <div class="d-flex align-items-center justify-content-between mb-4">
-                        <div class="jp-logo-sq">{{ ['CG','SV','TC'][$i] }}</div>
-                        <span class="jp-pill jp-pill-featured">
-                            <i class="ki-duotone ki-star fs-7 me-1">
-                                <span class="path1"></span>
-                                <span class="path2"></span>
-                            </i>
-                            Featured
-                        </span>
-                    </div>
-                    <h5 class="fw-bold mb-1"><a href="{{ route('jobs.index') }}" class="text-gray-900 text-decoration-none">{{ $title }}</a></h5>
-                    <div class="text-muted fs-7 mb-3">{{ ['Coles Group','St Vincent\'s Health','Techable Co'][$i] }} · {{ ['Western Sydney','Melbourne','Remote'][$i] }}</div>
-                    <div class="d-flex flex-wrap gap-2 mb-4">
-                        <span class="jp-pill">{{ ['Full-time','Casual','Contract'][$i] }}</span>
-                        <span class="jp-pill">{{ ['Logistics','Healthcare','Technology'][$i] }}</span>
-                    </div>
-                    <div class="d-flex align-items-center justify-content-between">
-                        <span class="fw-bold" style="color:var(--jp-teal);">{{ ['$34/hr','$52/hr','$95K–$115K'][$i] }}</span>
-                        <a href="{{ route('jobs.index') }}" class="btn btn-sm jp-btn-primary">Apply</a>
-                    </div>
-                </div>
-            </div>
-            @endforeach
-        </div>
         @endif
     </div>
     
