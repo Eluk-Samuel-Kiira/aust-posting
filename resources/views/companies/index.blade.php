@@ -205,7 +205,7 @@
                                 @foreach($locations as $location)
                                 <div class="form-check form-check-custom">
                                     <input class="form-check-input" type="checkbox" name="location_id[]" value="{{ is_array($location) ? $location['id'] : $location->id }}" id="loc-{{ $loop->index }}" {{ in_array(is_array($location) ? $location['id'] : $location->id, (array) request('location_id', [])) ? 'checked' : '' }} />
-                                    <label class="form-check-label" for="loc-{{ $loop->index }}">{{ is_array($location) ? $location['name'] : $location->district }}</label>
+                                    <label class="form-check-label" for="loc-{{ $loop->index }}">{{ is_array($location) ? $location['district'] : $location->district }}</label>
                                 </div>
                                 @endforeach
                             @else
