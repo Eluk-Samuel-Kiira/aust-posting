@@ -23,16 +23,10 @@ class CountryService
 
     protected function getHeaders(): array
     {
-        $headers = [
+        return [
             'X-Country-Code' => $this->countryCode,
             'Accept' => 'application/json',
         ];
-
-        if ($this->apiKey) {
-            $headers['Authorization'] = 'Bearer ' . $this->apiKey;
-        }
-
-        return $headers;
     }
 
     protected function getBaseUrl(): string
@@ -53,6 +47,11 @@ class CountryService
      */
     public function api(string $endpoint, array $params = [], string $method = 'GET', int $cacheMinutes = 0, bool $unwrapData = true): array
     {
+        // ALWAYS add API key as query parameter (works everywhere - local & production)
+        if ($this->apiKey) {
+            $params['api_key'] = $this->apiKey;
+        }
+
         $url = $this->getBaseUrl() . '/api/' . ltrim($endpoint, '/');
 
         $cacheKey = 'api.' . $this->countryCode . '.' . md5($url . json_encode($params) . $method . ($unwrapData ? 'unwrapped' : 'full'));
@@ -99,6 +98,7 @@ class CountryService
             Log::warning('API call returned non-successful response', [
                 'url' => $url,
                 'status' => $response->status(),
+                'body' => $response->body(),
             ]);
 
             return [];
