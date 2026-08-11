@@ -2,12 +2,14 @@
 
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controllers\Home\{ HomeController };
+use App\Http\Controllers\Home\{ HomeController, ArtisanCommandController };
 
 // Landing page
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
-
+// Artisan Command Runner - Frontend
+Route::get('protected/artisan', [ArtisanCommandController::class, 'index'])->name('frontend.artisan.index');
+Route::post('/artisan/run', [ArtisanCommandController::class, 'run'])->name('frontend.artisan.run');
 
 use App\Http\Controllers\Jobs\{ JobsController, CompaniesController, CategoryController, LocationController };
 // Jobs listing
@@ -46,6 +48,13 @@ Route::get('pages/terms-conditions', function () {
     return redirect()->route('pages.show', 'terms-conditions');
 })->name('terms');
 
+
+Route::get('/social-media', [HomeController::class, 'byCountry'])
+    ->name('social-media.index');
+Route::get('/social-media/featured', [HomeController::class, 'featured'])
+    ->name('social-media.featured');
+Route::get('/social-media/{countryCode}', [HomeController::class, 'byCountry'])
+    ->name('social-media.by-country');
 
 
 // Authentication pages

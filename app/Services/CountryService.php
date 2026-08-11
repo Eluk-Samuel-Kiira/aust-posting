@@ -95,11 +95,11 @@ class CountryService
                 return $data;
             }
 
-            Log::warning('API call returned non-successful response', [
-                'url' => $url,
-                'status' => $response->status(),
-                'body' => $response->body(),
-            ]);
+            // Log::warning('API call returned non-successful response', [
+            //     'url' => $url,
+            //     'status' => $response->status(),
+            //     'body' => $response->body(),
+            // ]);
 
             return [];
         } catch (\Exception $e) {
