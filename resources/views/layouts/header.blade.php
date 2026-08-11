@@ -208,6 +208,13 @@
 								</div>
 								<!--end::Menu item - Locations-->
 								
+								<div class="menu-item">
+									<a class="menu-link nav-link py-3 px-4 px-xxl-6 {{ Route::is('social-media.*') ? 'active' : '' }}" 
+									href="{{ route('social-media.featured') }}" 
+									data-kt-drawer-dismiss="true">
+										Connect
+									</a>
+								</div>
 								{{-- 
 								<!--begin::Menu item-->
 								<div class="menu-item">

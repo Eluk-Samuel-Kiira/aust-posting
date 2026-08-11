@@ -44,4 +44,33 @@ class HomeController extends Controller
 
         return view('pages.show', compact('page', 'country'));
     }
+
+
+    /**
+     * Display featured social media platforms
+     */
+    public function featured()
+    {
+        $country = $this->countryService->getCountryData();
+        $platforms = $this->countryService->api('social-media/featured', [
+            'country_code' => $country['code'] ?? 'AU',
+            'limit' => 10
+        ]);
+
+        return view('home.social-media.featured', compact('country', 'platforms'));
+    }
+
+    /**
+     * Display all social media platforms for a country
+     */
+    public function byCountry(Request $request, $countryCode = null)
+    {
+        $countryCode = $countryCode ?? $this->countryService->getCode();
+        $country = $this->countryService->getCountryData();
+        
+        $platforms = $this->countryService->api('social-media/country/' . $countryCode);
+
+        return view('social-media.index', compact('country', 'platforms', 'countryCode'));
+    }
+
 }
